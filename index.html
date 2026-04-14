@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BNEX | Ciência, Precisão e Tecnologia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,800;1,800&family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --laser-blue: #00CFFF;
+            --carbon-black: #080A10;
+            --platinum: #E8E8EC;
+            --muted-gray: #4A5060;
+        }
+        body { 
+            font-family: 'Ubuntu', sans-serif; 
+            background-color: var(--carbon-black); 
+            color: var(--platinum);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-exo { font-family: 'Exo 2', sans-serif; text-transform: uppercase; }
+        .text-laser { color: var(--laser-blue); }
+        .bg-laser { background-color: var(--laser-blue); }
+        .section-padding { padding: 180px 10%; }
+        
+        /* Glassmorphism Luxo */
+        .glass-card { 
+            background: rgba(26, 28, 36, 0.2); 
+            border: 1px solid rgba(255, 255, 255, 0.03); 
+            padding: 40px; 
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        @media (min-width: 1024px) { .glass-card { padding: 60px; } }
+        .glass-card:hover { 
+            border-color: var(--laser-blue); 
+            background: rgba(0, 207, 255, 0.02);
+            transform: translateY(-5px);
+        }
+
+        /* Botões */
+        .btn-luxury {
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 1.5rem 3rem;
+            letter-spacing: 0.5em;
+            font-size: 0.65rem;
+            font-weight: 800;
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-luxury::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 0; height: 100%;
+            background: var(--laser-blue);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: -1;
+        }
+        .btn-luxury:hover::before { width: 100%; }
+        .btn-luxury:hover { color: var(--carbon-black); border-color: var(--laser-blue); }
+        .btn-filled { background-color: var(--laser-blue); color: var(--carbon-black); border-color: var(--laser-blue); }
+
+        /* Inputs */
+        .input-bnex {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 18px 0;
+            width: 100%;
+            color: white;
+            outline: none;
+            transition: all 0.8s ease;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+        .input-bnex:focus { border-bottom-color: var(--laser-blue); padding-left: 15px; }
+        select.input-bnex option { background: #080A10; color: white; }
+
+        /* Videos */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 177.77%;
+            height: 0;
+            overflow: hidden;
+            max-width: 360px;
+            margin: 0 auto;
+            border: 1px solid rgba(0, 207, 255, 0.1);
+        }
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .line-accent {
+            height: 1px;
+            background: linear-gradient(90deg, var(--laser-blue), transparent);
+            width: 0;
+            transition: width 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .aos-animate .line-accent { width: 160px; }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-50 py-8 px-12 flex justify-between items-center bg-[#080A10]/70 backdrop-blur-3xl border-b border-white/5">
+        <div class="flex items-center gap-5 group">
+            <div class="w-5 h-5 border border-laser-blue flex items-center justify-center rotate-45 transition-transform duration-[2000ms] group-hover:rotate-[225deg]">
+                <div class="w-1.5 h-1.5 bg-laser rounded-full"></div>
+            </div>
+            <span class="font-exo font-extrabold text-2xl tracking-tighter">BNEX</span>
+        </div>
+        <div class="hidden lg:flex gap-14 text-[11px] font-bold tracking-[0.4em] opacity-40 uppercase">
+            <a href="#sobre" class="hover:text-laser transition-all">Autoridade</a>
+            <a href="#tecnologia" class="hover:text-laser transition-all">Tecnologia</a>
+            <a href="#hubs" class="hover:text-laser transition-all">Pontos de Coleta</a>
+            <a href="#preparacao" class="hover:text-laser transition-all">Preparação</a>
+        </div>
+        <a href="#contato" class="btn-luxury btn-filled !py-4 !px-10 text-[10px] hover:scale-105">INICIAR AGORA</a>
+    </nav>
+
+    <section class="min-h-screen flex items-center px-[10%] pt-20">
+        <div class="max-w-7xl">
+            <div class="line-accent mb-16" data-aos="fade-right"></div>
+            <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold italic leading-[1.05] tracking-tight" data-aos="fade-up">
+                CIÊNCIA. <br> <span class="text-laser">PRECISÃO.</span>
+            </h1>
+            <p class="text-muted-gray text-base lg:text-xl max-w-xl my-16 font-light leading-relaxed tracking-wide" data-aos="fade-up" data-aos-delay="400">
+                Biomonitoramento de elite baseado em 20 anos de trajetória olímpica. Coleta mínima, menos invasiva e resultados bioquímicos em menos de 20 minutos.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-10" data-aos="fade-up" data-aos-delay="600">
+                <a href="#contato" class="btn-luxury btn-filled font-exo">GESTÃO B2B</a>
+                <a href="#contato" class="btn-luxury font-exo">AGENDAR COLETA</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="section-padding bg-[#090b11]">
+        <div class="grid lg:grid-cols-2 gap-32 items-center">
+            <div data-aos="fade-right">
+                <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-10 tracking-tighter uppercase">Ciência que vira <br><span class="text-laser">Notícia</span></h2>
+                <p class="text-muted-gray font-light leading-relaxed mb-12 text-base lg:text-lg">
+                    Destaque na mídia nacional, a metodologia BNEX traduz o rigor acadêmico do Doutorado em performance prática. Enquanto o mercado trabalha com estimativas, nós entregamos dados bioquímicos reais.
+                </p>
+                <div class="flex flex-col gap-10">
+                    <div class="flex gap-16 border-t border-white/5 pt-12">
+                        <div><span class="block text-5xl font-bold font-exo italic text-laser">03</span><span class="text-[10px] tracking-[0.4em] opacity-30 uppercase font-bold">Olimpíadas</span></div>
+                        <div><span class="block text-5xl font-bold font-exo italic text-laser">+20</span><span class="text-[10px] tracking-[0.4em] opacity-30 uppercase font-bold">Anos P&D</span></div>
+                    </div>
+                    <a href="https://www.instagram.com/reels/DT6nGmEj6Lg/" target="_blank" class="group inline-flex items-center gap-6">
+                        <div class="w-16 h-16 rounded-full border border-laser/30 flex items-center justify-center bg-white/5 group-hover:bg-laser transition-all duration-1000">
+                            <span class="text-laser group-hover:text-black text-2xl ml-1">▶</span>
+                        </div>
+                        <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-laser underline underline-offset-8">Assistir Reportagem</span>
+                    </a>
+                </div>
+            </div>
+            <div class="glass-card" data-aos="fade-left">
+                <div class="video-wrapper rounded-sm shadow-2xl">
+                    <video autoplay muted loop playsinline>
+                        <source src="videos/reportagem.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tecnologia" class="section-padding">
+        <div class="text-center mb-24">
+            <h2 class="text-4xl font-extrabold italic mb-6">Tecnologia de <span class="text-laser">Prontidão</span></h2>
+            <p class="text-muted-gray max-w-2xl mx-auto font-light leading-relaxed">
+                Nossa interface proprietária transforma biomarcadores em decisões imediatas. A única cor viva onde há energia real.
+            </p>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+            <div class="glass-card !p-0 overflow-hidden" data-aos="fade-right">
+                <div class="p-6 border-b border-white/5 bg-white/5 flex justify-between items-center font-exo">
+                    <span class="text-[9px] font-bold tracking-[0.4em] opacity-30">Relatório Individual</span>
+                </div>
+                <video autoplay muted loop playsinline class="w-full grayscale hover:grayscale-0 transition-all duration-1000">
+                    <source src="videos/biomarcadores.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="glass-card !p-0 overflow-hidden" data-aos="fade-left">
+                <div class="p-6 border-b border-white/5 bg-white/5 flex justify-between items-center font-exo">
+                    <span class="text-[9px] font-bold tracking-[0.4em] opacity-30">Matriz de Gestão B2B</span>
+                </div>
+                <video autoplay muted loop playsinline class="w-full grayscale hover:grayscale-0 transition-all duration-1000">
+                    <source src="videos/matriz.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <section id="hubs" class="section-padding bg-[#0c0e14]">
+        <h2 class="text-center text-3xl font-extrabold italic mb-20 uppercase tracking-[0.5em]">Nossos <span class="text-laser">Pontos de Coleta</span></h2>
+        <div class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto text-center">
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
+                <span class="text-laser font-bold block mb-4 tracking-[0.4em] text-xs">VITÓRIA</span>
+                <h4 class="text-sm font-bold opacity-80 uppercase font-exo italic">Appto Assessoria Esportiva</h4>
+            </div>
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="400">
+                <span class="text-laser font-bold block mb-4 tracking-[0.4em] text-xs">RIO DE JANEIRO</span>
+                <h4 class="text-sm font-bold opacity-80 uppercase font-exo italic">VEUS Saúde</h4>
+            </div>
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="600">
+                <span class="text-laser font-bold block mb-4 tracking-[0.4em] text-xs">SÃO PAULO</span>
+                <h4 class="text-sm font-bold opacity-80 uppercase font-exo italic">Clínica Stabilita</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="preparacao" class="section-padding">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-extrabold italic mb-16 uppercase tracking-tighter" data-aos="fade-right">Guia de <span class="text-laser">Preparação</span></h2>
+            <div class="grid lg:grid-cols-3 gap-12">
+                <div class="glass-card" data-aos="fade-up">
+                    <h3 class="text-laser font-bold mb-6 text-xs uppercase tracking-[0.2em]">O que fazer</h3>
+                    <ul class="text-xs text-muted-gray space-y-4 leading-relaxed font-light">
+                        <li>• Hidratação constante (mínimo 2.5L/dia).</li>
+                        <li>• Repouso de qualidade (7h-9h de sono).</li>
+                        <li>• Manter dieta habitual para base bioquímica estável.</li>
+                    </ul>
+                </div>
+                <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-laser font-bold mb-6 text-xs uppercase tracking-[0.2em]">Pontos de Atenção</h3>
+                    <ul class="text-xs text-muted-gray space-y-4 leading-relaxed font-light">
+                        <li>• Zero álcool nas 48h que antecedem a coleta.</li>
+                        <li>• Não introduzir novos suplementos na semana da coleta.</li>
+                        <li>• Relatar qualquer sintoma de infecção ou lesão.</li>
+                    </ul>
+                </div>
+                <div class="glass-card" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="text-laser font-bold mb-6 text-xs uppercase tracking-[0.2em]">A Coleta</h3>
+                    <p class="text-xs text-muted-gray leading-relaxed font-light">
+                        Processo tecnológico ultra-rápido. Uma pequena amostra periférica, processamento imediato e conduta personalizada entregue no seu dashboard em até 20 minutos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="section-padding bg-[#090b11]">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-32">
+            <div>
+                <h2 class="text-5xl font-extrabold italic mb-12 uppercase leading-tight">Inicie sua <br><span class="text-laser">Evolução</span></h2>
+                <p class="text-muted-gray font-light leading-relaxed mb-16 text-lg">Preencha o perfil de prontidão para que nossa equipe técnica alinhe o protocolo ideal para sua performance.</p>
+                <div class="space-y-10 opacity-20 uppercase font-bold text-[10px] tracking-[0.5em]">
+                    <div class="flex items-center gap-8"><div class="w-1 h-1 bg-laser"></div><span>Análise Bioquímica Real</span></div>
+                    <div class="flex items-center gap-8"><div class="w-1 h-1 bg-laser"></div><span>Controle de Carga Olímpica</span></div>
+                </div>
+            </div>
+
+            <div class="glass-card !p-12 lg:!p-16">
+                <form action="#" class="space-y-10">
+                    <div class="grid grid-cols-2 gap-10">
+                        <input type="text" placeholder="NOME COMPLETO" class="input-bnex" required>
+                        <input type="text" placeholder="DATA ANIVERSÁRIO" class="input-bnex" required>
+                    </div>
+                    <select class="input-bnex" required>
+                        <option value="" disabled selected>FOCO PRINCIPAL HOJE</option>
+                        <option value="emagrecimento">Emagrecimento (Redução de Gordura)</option>
+                        <option value="hipertrofia">Hipertrofia (Ganho de Massa)</option>
+                        <option value="performance">Performance Esportiva (Sem foco estético)</option>
+                    </select>
+                    <input type="text" placeholder="POSSUI ALGUMA COMORBIDADE OU LESÃO?" class="input-bnex">
+                    <div class="grid grid-cols-2 gap-10">
+                        <input type="text" placeholder="ROTINA SEMANAL (DIAS/HORÁRIOS)" class="input-bnex" required>
+                        <input type="text" placeholder="DIA DE CARGA MÁXIMA / DIA OFF" class="input-bnex" required>
+                    </div>
+                    <select class="input-bnex" required>
+                        <option value="" disabled selected>NÍVEL DE CANSAÇO GERAL (0 A 10)</option>
+                        <option value="baixa">0 a 3 (Baixa)</option>
+                        <option value="media">4 a 7 (Moderada)</option>
+                        <option value="alta">8 a 10 (Alta Fadiga)</option>
+                    </select>
+                    <input type="text" placeholder="SUPLEMENTOS OU MEDICAMENTOS EM USO" class="input-bnex">
+                    <div class="grid grid-cols-2 gap-10">
+                        <select class="input-bnex" required>
+                            <option value="" disabled selected>HUB DE COLETA</option>
+                            <option value="vitória">Vitória</option>
+                            <option value="rj">Rio de Janeiro</option>
+                            <option value="sp">São Paulo</option>
+                        </select>
+                        <input type="tel" placeholder="WHATSAPP" class="input-bnex" required>
+                    </div>
+                    <button type="submit" class="btn-luxury btn-filled w-full">SOLICITAR ANÁLISE</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-24 px-[10%] flex flex-col md:flex-row justify-between items-center gap-12 border-t border-white/5 opacity-20 text-[9px] font-bold tracking-[0.6em] uppercase">
+        <span class="font-exo text-2xl">BNEX</span>
+        <div class="flex gap-16">
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 2500, once: true, offset: 80, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
+    </script>
+</body>
+</html>
