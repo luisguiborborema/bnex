@@ -3,52 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BNEX | Ciência de Elite & Inteligência Bioquímica</title>
+    <title>BNEX | Biomarker Innovation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,800;1,800&family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --laser-blue: #00CFFF;
-            --carbon-black: #080A10;
-            --platinum: #E8E8EC;
-            --muted-gray: #4A5060;
+            /* Paleta Completa BNEX */
+            --brand-blue: #0372ff; /* Pulso de Dados */
+            --bg-dark: #0a0f2c; /* Fundo principal escuro */
+            --bg-card: #16215b; /* Azul Venoso */
+            --bg-darker: #0c1236; /* Tom de profundidade */
+            --text-light: #e0eaf8; /* Plasma Claro */
+            --text-muted: #a3a9f5; /* Cinza Neural / Azul Claro */
+            --brand-orange: #f26522; /* Alarme Metabólico (Gota Central) */
+            --brand-green: #125929; /* Validação / Sucesso */
         }
         
-        /* Trava rigorosa para evitar scroll horizontal */
         html, body { 
             max-width: 100vw;
             overflow-x: hidden;
-            font-family: 'Ubuntu', sans-serif; 
-            background-color: var(--carbon-black); 
-            color: var(--platinum);
+            font-family: 'Ubuntu', sans-serif;
+            background-color: var(--bg-dark); 
+            color: var(--text-light);
             scroll-behavior: smooth;
         }
         
-        h1, h2, h3, h4, .font-exo { font-family: 'Exo 2', sans-serif; text-transform: uppercase; }
-        .text-laser { color: var(--laser-blue); }
-        .bg-laser { background-color: var(--laser-blue); }
+        h1, h2, h3, h4, .font-figtree { font-family: 'Figtree', sans-serif; }
         
-        /* Espaçamento Responsivo */
+        .text-brand { color: var(--brand-blue); }
+        .text-orange { color: var(--brand-orange); }
+        .bg-brand { background-color: var(--brand-blue); }
+        .bg-orange { background-color: var(--brand-orange); }
+        
         .section-padding { padding: 60px 5%; }
         @media (min-width: 1024px) { .section-padding { padding: 120px 10%; } }
         
+        /* Cards atualizados */
         .glass-card { 
-            background: rgba(26, 28, 36, 0.2); 
-            border: 1px solid rgba(255, 255, 255, 0.03); 
+            background: rgba(22, 33, 91, 0.4); 
+            border: 1px solid rgba(163, 169, 245, 0.1); 
             padding: 30px; 
             transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); 
         }
         @media (min-width: 1024px) { .glass-card { padding: 40px; } }
         
         .glass-card:hover { 
-            border-color: var(--laser-blue); 
-            background: rgba(0, 207, 255, 0.02);
+            border-color: var(--brand-blue); 
+            background: rgba(3, 114, 255, 0.08);
             transform: translateY(-5px);
+        }
+        
+        .glass-card-alert:hover {
+            border-color: var(--brand-orange); 
+            background: rgba(242, 101, 34, 0.05);
         }
 
         .btn-luxury {
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(224, 234, 248, 0.15);
             padding: 1rem 1.5rem;
             letter-spacing: 0.3em;
             font-size: 0.6rem;
@@ -59,6 +73,8 @@
             z-index: 1;
             cursor: pointer;
             text-align: center;
+            font-family: 'Figtree', sans-serif;
+            text-transform: uppercase;
         }
         @media (min-width: 768px) {
             .btn-luxury { padding: 1.2rem 2.5rem; letter-spacing: 0.5em; font-size: 0.65rem; }
@@ -68,37 +84,41 @@
             content: "";
             position: absolute;
             top: 0; left: 0; width: 0; height: 100%;
-            background: var(--laser-blue);
+            background: var(--brand-blue);
             transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: -1;
         }
         .btn-luxury:hover::before { width: 100%; }
-        .btn-luxury:hover { color: var(--carbon-black); border-color: var(--laser-blue); }
-        .btn-filled { background-color: var(--laser-blue); color: var(--carbon-black); border-color: var(--laser-blue); }
+        .btn-luxury:hover { color: #ffffff; border-color: var(--brand-blue); }
+        
+        .btn-filled { background-color: var(--brand-blue); color: #ffffff; border-color: var(--brand-blue); }
 
         .input-bnex {
             background: transparent;
             border: none;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(163, 169, 245, 0.2);
             padding: 18px 0;
             width: 100%;
-            color: white;
+            color: var(--text-light);
             outline: none;
             transition: all 0.8s ease;
             font-size: 0.75rem;
             letter-spacing: 0.1em;
+            font-family: 'Ubuntu', sans-serif;
         }
-        .input-bnex:focus { border-bottom-color: var(--laser-blue); padding-left: 10px; }
+        .input-bnex:focus { border-bottom-color: var(--brand-blue); padding-left: 10px; }
+        .input-bnex::placeholder { color: var(--text-muted); opacity: 0.7; }
+        select.input-bnex option { background: var(--bg-dark); color: var(--text-light); }
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 177.77%; /* 9:16 */
+            padding-bottom: 177.77%;
             height: 0;
             overflow: hidden;
             width: 100%;
             max-width: 360px;
             margin: 0 auto;
-            border: 1px solid rgba(0, 207, 255, 0.1);
+            border: 1px solid rgba(3, 114, 255, 0.2);
         }
         .video-wrapper video, .video-wrapper iframe {
             position: absolute;
@@ -106,8 +126,8 @@
         }
 
         .line-accent {
-            height: 1px;
-            background: linear-gradient(90deg, var(--laser-blue), transparent);
+            height: 2px;
+            background: linear-gradient(90deg, var(--brand-orange), var(--brand-blue), transparent);
             width: 80px;
             transition: width 2.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -116,30 +136,51 @@
         .guide-media {
             width: 100%;
             height: 200px;
-            background: #000;
+            background: var(--bg-darker);
             overflow: hidden;
             margin-bottom: 24px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(163, 169, 245, 0.1);
         }
         .guide-media img, .guide-media video {
             width: 100%; height: 100%; object-fit: cover; opacity: 0.8;
+            transition: transform 1.5s ease, opacity 0.5s ease;
+        }
+        .glass-card:hover .guide-media img, .glass-card:hover .guide-media video { 
+            transform: scale(1.05); 
+            opacity: 1;
+        }
+
+        .text-brand-blue { color: var(--brand-blue); }
+        .text-muted-blue { color: var(--text-muted); }
+        .bg-darker { background-color: var(--bg-darker); }
+
+        /* Utilitário para o grid de imagens da coleta */
+        .img-grid-container {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(2, 1fr);
+            auto-rows: 150px;
+        }
+        @media (min-width: 1024px) {
+            .img-grid-container {
+                grid-template-columns: repeat(4, 1fr);
+                auto-rows: 220px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <nav class="fixed top-0 left-0 w-full z-50 py-3 lg:py-6 px-4 lg:px-10 flex justify-between items-center bg-[#080A10]/90 backdrop-blur-md border-b border-white/5">
-        <div class="flex items-center gap-3 group">
-            <div class="w-4 h-4 lg:w-5 lg:h-5 border border-laser-blue flex items-center justify-center rotate-45 transition-transform duration-[2000ms] group-hover:rotate-[225deg]">
-                <div class="w-1 h-1 bg-laser rounded-full animate-pulse"></div>
-            </div>
-            <span class="font-exo font-extrabold text-lg lg:text-xl tracking-tighter">BNEX</span>
+    <nav class="fixed top-0 left-0 w-full z-50 py-3 lg:py-5 px-4 lg:px-10 flex justify-between items-center bg-[#0a0f2c]/90 backdrop-blur-md border-b border-[rgba(163,169,245,0.1)]">
+        <div class="flex items-center gap-3">
+            <img src="imagens/logo.png" alt="BNEX Logo" class="h-6 lg:h-8 object-contain">
+            <span class="font-figtree font-black text-lg lg:text-xl tracking-tighter mt-1"></span>
         </div>
-        <div class="hidden lg:flex gap-10 text-[10px] font-bold tracking-[0.4em] opacity-40 uppercase">
-            <a href="#sobre" class="hover:text-laser transition-all">Autoridade</a>
-            <a href="#preparacao" class="hover:text-laser transition-all">O Método</a>
-            <a href="#tecnologia" class="hover:text-laser transition-all">IA & Bioquímica</a>
-            <a href="#hubs" class="hover:text-laser transition-all">Hubs</a>
+        <div class="hidden lg:flex gap-10 text-[10px] font-bold tracking-[0.4em] text-[var(--text-muted)] uppercase font-figtree">
+            <a href="#sobre" class="hover:text-brand-blue transition-all">Autoridade</a>
+            <a href="#preparacao" class="hover:text-brand-blue transition-all">O Método</a>
+            <a href="#coleta" class="hover:text-brand-blue transition-all">A Coleta</a>
+            <a href="#tecnologia" class="hover:text-brand-blue transition-all">Tecnologia</a>
         </div>
         <a href="#contato" class="btn-luxury btn-filled !py-2 lg:!py-3 !px-4 lg:!px-8 !text-[8px] lg:!text-[9px]">SOLICITAR ACESSO</a>
     </nav>
@@ -148,11 +189,11 @@
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full z-10 relative">
             <div data-aos="fade-right">
                 <div class="line-accent mb-8 lg:mb-12"></div>
-                <h1 class="text-4xl sm:text-6xl lg:text-[90px] xl:text-[100px] font-extrabold italic leading-[1] lg:leading-[0.85] mb-6 lg:mb-10 uppercase break-words">
-                    A VERDADE <br> <span class="text-laser italic">BIOQUÍMICA.</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold italic leading-[1.1] lg:leading-[0.95] mb-6 lg:mb-10 uppercase break-words font-figtree">
+                    A VERDADE <br> <span class="text-brand-blue italic">BIOQUÍMICA.</span>
                 </h1>
-                <p class="text-muted-gray text-sm sm:text-base lg:text-xl max-w-xl mb-8 lg:mb-12 font-light leading-relaxed">
-                    Wearables entregam estimativas. A BNEX entrega **certeza**. Através de IA e tecnologia Point of Care, processamos seu perfil biológico em 20 minutos para definir o seu próximo passo rumo à elite.
+                <p class="text-muted-blue text-sm sm:text-base lg:text-xl max-w-xl mb-8 lg:mb-12 font-light leading-relaxed">
+                    Wearables entregam estimativas. A BNEX entrega <strong class="text-white">certeza</strong>. Através de IA e tecnologia Point of Care, decodificamos a essência da sua performance em 20 minutos.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 lg:gap-6">
                     <a href="#contato" class="btn-luxury btn-filled w-full sm:w-auto">AGENDAR COLETA</a>
@@ -164,119 +205,154 @@
                 <video autoplay muted loop playsinline class="w-full aspect-video object-cover rounded-sm">
                     <source src="videos/hero_impacto.mp4" type="video/mp4">
                 </video>
-                <div class="absolute -top-2 -left-2 lg:-top-4 lg:-left-4 bg-laser text-black px-3 py-1 lg:px-4 lg:py-2 font-exo font-bold text-[8px] lg:text-[10px] tracking-widest uppercase shadow-lg">
+                <div class="absolute -top-2 -left-2 lg:-top-4 lg:-left-4 bg-orange text-white px-3 py-1 lg:px-4 lg:py-2 font-figtree font-bold text-[8px] lg:text-[10px] tracking-widest uppercase shadow-lg">
                     Tecnologia de Ruptura
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="sobre" class="section-padding bg-[#090b11]">
+    <section id="sobre" class="section-padding bg-darker">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-32 items-center">
             <div data-aos="fade-right">
-                <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-6 lg:mb-10 tracking-tighter uppercase leading-tight italic">Ciência que vira <br><span class="text-laser italic">Notícia</span></h2>
-                <p class="text-muted-gray font-light leading-relaxed mb-8 lg:mb-12 text-sm lg:text-lg">
-                    Destaque na mídia nacional, a metodologia BNEX traduz o rigor acadêmico em performance prática. Nossa tecnologia, validada por 20 anos de trajetória olímpica, redefine o que é possível no esporte de alto rendimento.
+                <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-6 lg:mb-10 tracking-tighter uppercase leading-tight italic font-figtree">Ciência que vira <br><span class="text-brand-blue italic">Notícia</span></h2>
+                <p class="text-muted-blue font-light leading-relaxed mb-8 lg:mb-12 text-sm lg:text-lg">
+                    Destaque na mídia nacional, a metodologia BNEX atua na intersecção exata entre a inovação clínica e a inteligência laboratorial. Validada por 20 anos de trajetória olímpica.
                 </p>
                 
                 <div class="flex flex-col gap-8 lg:gap-10">
-                    <div class="flex gap-8 lg:gap-16 border-t border-white/5 pt-8 lg:pt-12">
-                        <div><span class="block text-4xl lg:text-5xl font-bold font-exo italic text-laser">03</span><span class="text-[8px] lg:text-[10px] tracking-[0.4em] opacity-30 uppercase font-bold">Olimpíadas</span></div>
-                        <div><span class="block text-4xl lg:text-5xl font-bold font-exo italic text-laser">+20</span><span class="text-[8px] lg:text-[10px] tracking-[0.4em] opacity-30 uppercase font-bold">Anos P&D</span></div>
+                    <div class="flex gap-8 lg:gap-16 border-t border-[rgba(163,169,245,0.2)] pt-8 lg:pt-12">
+                        <div><span class="block text-4xl lg:text-5xl font-bold font-figtree italic text-brand-blue">03</span><span class="text-[8px] lg:text-[10px] tracking-[0.4em] text-muted-blue uppercase font-bold">Olimpíadas</span></div>
+                        <div><span class="block text-4xl lg:text-5xl font-bold font-figtree italic text-brand-blue">+20</span><span class="text-[8px] lg:text-[10px] tracking-[0.4em] text-muted-blue uppercase font-bold">Anos P&D</span></div>
                     </div>
                     <a href="https://www.instagram.com/reels/DT6nGmEj6Lg/" target="_blank" class="group inline-flex items-center gap-4 lg:gap-6">
-                        <div class="w-10 h-10 lg:w-14 h-14 rounded-full border border-laser/30 flex items-center justify-center bg-white/5 group-hover:bg-laser transition-all duration-1000">
-                            <span class="text-laser group-hover:text-black text-lg lg:text-xl ml-1">▶</span>
+                        <div class="w-10 h-10 lg:w-14 h-14 rounded-full border border-[var(--brand-orange)] flex items-center justify-center bg-white/5 group-hover:bg-[var(--brand-orange)] transition-all duration-700">
+                            <span class="text-orange group-hover:text-white text-lg lg:text-xl ml-1">▶</span>
                         </div>
-                        <span class="text-[8px] lg:text-[10px] font-bold tracking-[0.4em] uppercase text-laser underline underline-offset-4 lg:underline-offset-8">Assistir Reportagem</span>
+                        <span class="text-[8px] lg:text-[10px] font-bold tracking-[0.4em] uppercase text-orange underline underline-offset-4 lg:underline-offset-8">Assistir Reportagem</span>
                     </a>
                 </div>
             </div>
 
             <div class="glass-card !p-4 lg:!p-8 text-center" data-aos="fade-left">
-                <div class="video-wrapper rounded-sm shadow-2xl border border-laser/10">
+                <div class="video-wrapper rounded-sm shadow-2xl border border-[var(--brand-blue)]">
                     <video autoplay muted loop playsinline class="opacity-100">
                         <source src="videos/reportagem.mp4" type="video/mp4">
                     </video>
                 </div>
-                <p class="mt-4 lg:mt-8 text-[8px] lg:text-[10px] tracking-[0.5em] opacity-20 uppercase font-bold italic font-exo">BNEX no Jornal Nacional</p>
+                <p class="mt-4 lg:mt-8 text-[8px] lg:text-[10px] tracking-[0.5em] text-muted-blue uppercase font-bold italic font-figtree">BNEX no Jornal Nacional</p>
             </div>
         </div>
     </section>
 
-    <section id="dores" class="section-padding bg-[#080A10]">
+    <section id="dores" class="section-padding">
         <div class="max-w-7xl mx-auto text-center lg:text-left">
-            <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-12 lg:mb-20 uppercase tracking-tighter">Por que sua performance <br><span class="text-laser italic">está quebrando?</span></h2>
+            <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-12 lg:mb-20 uppercase tracking-tighter font-figtree">Por que sua performance <br><span class="text-orange italic">está quebrando?</span></h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                <div class="glass-card flex flex-col gap-4 lg:gap-6" data-aos="fade-up">
+                <div class="glass-card glass-card-alert flex flex-col gap-4 lg:gap-6" data-aos="fade-up">
                     <div class="guide-media"><img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=800" alt="Fadiga"></div>
-                    <h4 class="font-bold text-laser text-xs lg:text-sm tracking-widest uppercase italic">Quebrando na prova?</h4>
-                    <p class="text-[10px] lg:text-xs text-muted-gray font-light leading-relaxed">Sair da prova sem energia não é falta de treino, é o seu corpo protegendo seus órgãos por falta de monitoramento metabólico.</p>
+                    <h4 class="font-bold text-orange text-xs lg:text-sm tracking-widest uppercase italic font-figtree">Quebrando na prova?</h4>
+                    <p class="text-[10px] lg:text-xs text-muted-blue font-light leading-relaxed">Sair da prova sem energia não é falta de treino, é o seu corpo protegendo seus órgãos por falta de monitoramento metabólico.</p>
                 </div>
-                <div class="glass-card flex flex-col gap-4 lg:gap-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="glass-card glass-card-alert flex flex-col gap-4 lg:gap-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="guide-media"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" alt="Lesão"></div>
-                    <h4 class="font-bold text-laser text-xs lg:text-sm tracking-widest uppercase italic">O fantasma da lesão?</h4>
-                    <p class="text-[10px] lg:text-xs text-muted-gray font-light leading-relaxed">Lesões "inexplicáveis" são o grito de um sistema inflamado. Nossa IA detecta o risco antes do primeiro sintoma.</p>
+                    <h4 class="font-bold text-orange text-xs lg:text-sm tracking-widest uppercase italic font-figtree">O fantasma da lesão?</h4>
+                    <p class="text-[10px] lg:text-xs text-muted-blue font-light leading-relaxed">Lesões "inexplicáveis" são o grito de um sistema inflamado. Nossa IA detecta o risco antes do primeiro sintoma.</p>
                 </div>
-                <div class="glass-card flex flex-col gap-4 lg:gap-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="glass-card glass-card-alert flex flex-col gap-4 lg:gap-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="guide-media"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800" alt="Estagnação"></div>
-                    <h4 class="font-bold text-laser text-xs lg:text-sm tracking-widest uppercase italic">Esforço sem evolução?</h4>
-                    <p class="text-[10px] lg:text-xs text-muted-gray font-light leading-relaxed">Treinar mais não é treinar melhor. Sem dados reais, seu planejamento é apenas um palpite. Saia do platô com precisão.</p>
+                    <h4 class="font-bold text-orange text-xs lg:text-sm tracking-widest uppercase italic font-figtree">Esforço sem evolução?</h4>
+                    <p class="text-[10px] lg:text-xs text-muted-blue font-light leading-relaxed">Treinar mais não é treinar melhor. Sem dados reais, seu planejamento é apenas um palpite. Saia do platô com precisão.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="preparacao" class="section-padding bg-[#090b11]">
+    <section id="preparacao" class="section-padding bg-darker">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl lg:text-4xl font-extrabold italic mb-12 lg:mb-16 uppercase tracking-tighter" data-aos="fade-right">Protocolo de <span class="text-laser italic">Alta Performance</span></h2>
+            <h2 class="text-3xl lg:text-4xl font-extrabold italic mb-12 lg:mb-16 uppercase tracking-tighter font-figtree" data-aos="fade-right">Protocolo de <span class="text-brand-blue italic">Alta Performance</span></h2>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
                 <div class="glass-card flex flex-col gap-4" data-aos="fade-up">
-                    <div class="guide-media border border-laser/10">
-                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=800" alt="Diretrizes de Dieta" class="opacity-100">
+                    <div class="guide-media">
+                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=800" alt="Diretrizes de Dieta">
                     </div>
-                    <h3 class="text-laser font-bold mb-2 text-xs uppercase tracking-widest italic">Base de Prontidão</h3>
-                    <p class="text-[10px] lg:text-xs text-muted-gray leading-relaxed font-light">Mantenha hidratação constante (mínimo 2.5L de água por dia). Seguir a dieta habitual (não mudar hábitos na véspera).</p>
+                    <h3 class="text-brand-blue font-bold mb-2 text-xs uppercase tracking-widest italic font-figtree">Base de Prontidão</h3>
+                    <p class="text-[10px] lg:text-xs text-muted-blue leading-relaxed font-light">Mantenha hidratação constante (mínimo 2.5L/dia). Seguir a dieta habitual. Precisamos da sua biologia pura.</p>
                 </div>
-                <div class="glass-card flex flex-col gap-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="guide-media border border-laser/10">
-                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800" alt="Fatores Críticos" class="opacity-100">
+                <div class="glass-card glass-card-alert flex flex-col gap-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="guide-media">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800" alt="Fatores Críticos">
                     </div>
-                    <h3 class="text-laser font-bold mb-2 text-xs uppercase tracking-widest italic">Fatores Críticos</h3>
-                    <ul class="text-[10px] text-muted-gray space-y-2 uppercase tracking-widest leading-relaxed">
+                    <h3 class="text-orange font-bold mb-2 text-xs uppercase tracking-widest italic font-figtree">Fatores Críticos</h3>
+                    <ul class="text-[10px] text-muted-blue space-y-2 uppercase tracking-widest leading-relaxed">
                         <li>• Zero Álcool nas 48h anteriores</li>
                         <li>• Dormir de 7h a 9h</li>
                         <li>• Zero novos suplementos</li>
                     </ul>
                 </div>
                 <div class="glass-card flex flex-col gap-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="guide-media border border-laser/10">
+                    <div class="guide-media border border-[var(--brand-blue)]">
                         <video autoplay muted loop playsinline class="opacity-100">
                             <source src="videos/biomarcadores.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <h3 class="text-laser font-bold mb-2 text-xs uppercase tracking-widest italic">Monitoramento Instantâneo</h3>
-                    <p class="text-[10px] lg:text-xs text-muted-gray leading-relaxed font-light italic">Coleta minimamente invasiva por gota de sangue periférica. Processamento bioquímico local e conduta via IA em 20 minutos.</p>
+                    <h3 class="text-brand-blue font-bold mb-2 text-xs uppercase tracking-widest italic font-figtree">15 Minutos Point Of Care</h3>
+                    <p class="text-[10px] lg:text-xs text-muted-blue leading-relaxed font-light italic">Coleta minimamente invasiva por gota de sangue periférica. Processamento bioquímico local e conduta via IA.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="tecnologia" class="section-padding bg-[#080A10]">
+    <section id="coleta" class="section-padding">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center lg:text-left mb-12 lg:mb-16" data-aos="fade-right">
+                <h2 class="text-3xl lg:text-4xl font-extrabold italic mb-4 uppercase tracking-tighter font-figtree">A Coleta <span class="text-brand-blue italic">Point of Care</span></h2>
+                <p class="text-muted-blue font-light leading-relaxed text-sm lg:text-base max-w-2xl">
+                    Procedimento minimamente invasivo. Gota de sangue periférica com processamento de laboratório em tempo real no seu Hub de performance.
+                </p>
+            </div>
+
+            <div class="img-grid-container">
+                <div class="col-span-2 row-span-2 glass-card !p-1 lg:!p-2 overflow-hidden relative group" data-aos="fade-up">
+                    <img src="imagens/01.jpg" alt="Processo de Coleta BNEX 1" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute bottom-4 left-4 bg-bg-darker/80 backdrop-blur-sm px-3 py-1 border border-brand-blue/30 text-[8px] lg:text-[10px] text-text-light uppercase tracking-widest font-bold">
+                        Passo 01
+                    </div>
+                </div>
+                <div class="col-span-1 row-span-1 glass-card !p-1 lg:!p-2 overflow-hidden relative group" data-aos="fade-up" data-aos-delay="100">
+                    <img src="imagens/02.jpg" alt="Processo de Coleta BNEX 2" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                </div>
+                <div class="col-span-1 row-span-1 glass-card !p-1 lg:!p-2 overflow-hidden relative group" data-aos="fade-up" data-aos-delay="200">
+                    <img src="imagens/03.jpg" alt="Processo de Coleta BNEX 3" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                </div>
+                <div class="col-span-1 row-span-1 glass-card !p-1 lg:!p-2 overflow-hidden relative group" data-aos="fade-up" data-aos-delay="300">
+                    <img src="imagens/04.jpg" alt="Processo de Coleta BNEX 4" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                </div>
+                <div class="col-span-1 row-span-1 glass-card !p-1 lg:!p-2 overflow-hidden relative group" data-aos="fade-up" data-aos-delay="400">
+                    <img src="imagens/05.jpg" alt="Processo de Coleta BNEX 5" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute bottom-2 right-2 lg:bottom-4 lg:right-4 bg-brand-blue text-white px-2 py-1 text-[8px] lg:text-[10px] uppercase tracking-widest font-bold">
+                        15 Minutos
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tecnologia" class="section-padding bg-darker">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             <div data-aos="fade-right" class="text-center lg:text-left">
-                <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-6 lg:mb-8 uppercase tracking-tighter italic">O Cérebro do <br><span class="text-laser italic">Seu Treinamento</span></h2>
-                <p class="text-muted-gray font-light leading-relaxed mb-6 lg:mb-8 text-sm lg:text-lg">
-                    Esqueça o feeling. Nossa Inteligência Artificial proprietária processa seus biomarcadores inflamatórios, metabólicos e hormonais em tempo real.
+                <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-6 lg:mb-8 uppercase tracking-tighter italic font-figtree">A Tecnologia da <br><span class="text-brand-blue italic">Sua Performance</span></h2>
+                <p class="text-muted-blue font-light leading-relaxed mb-6 lg:mb-8 text-sm lg:text-lg">
+                    Esqueça o feeling. Nossa interface proprietária processa seus biomarcadores inflamatórios, metabólicos e hormonais em tempo real, fornecendo informações precisas para monitorar com confiança.
                 </p>
-                <ul class="space-y-4 opacity-40 uppercase font-bold text-[8px] lg:text-[10px] tracking-[0.2em] lg:tracking-[0.4em] text-left inline-block">
-                    <li>• Análise de Resposta Inflamatória</li>
-                    <li>• Controle de Desgaste Muscular</li>
-                    <li>• Ajuste Dinâmico de Carga via IA</li>
+                <ul class="space-y-4 text-text-light uppercase font-bold text-[8px] lg:text-[10px] tracking-[0.2em] lg:tracking-[0.4em] text-left inline-block">
+                    <li><span class="text-brand-blue mr-2">■</span> Análise de Resposta Inflamatória</li>
+                    <li><span class="text-orange mr-2">■</span> Controle de Desgaste Muscular</li>
+                    <li><span class="text-muted-blue mr-2">■</span> Ajuste Dinâmico de Carga via IA</li>
                 </ul>
             </div>
-            <div class="glass-card !p-0 overflow-hidden border border-laser/10" data-aos="fade-left">
+            <div class="glass-card !p-0 overflow-hidden border border-[var(--brand-blue)]" data-aos="fade-left">
                 <video autoplay muted loop playsinline class="w-full object-cover opacity-100 aspect-video">
                     <source src="videos/matriz.mp4" type="video/mp4">
                 </video>
@@ -284,28 +360,28 @@
         </div>
     </section>
 
-    <section id="hubs" class="section-padding bg-[#0c0e14]">
+    <section id="hubs" class="section-padding">
         <div class="text-center mb-12 lg:mb-20">
-            <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-4 lg:mb-6 uppercase tracking-[0.2em] lg:tracking-[0.4em] italic">Pontos de Coleta <span class="text-laser italic">Hubs</span></h2>
-            <p class="text-muted-gray font-light uppercase text-[8px] lg:text-[10px] tracking-widest">Centros estratégicos de monitoramento bioquímico.</p>
+            <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-4 lg:mb-6 uppercase tracking-[0.2em] lg:tracking-[0.4em] italic font-figtree">Pontos de Coleta <span class="text-brand-blue italic">Hubs</span></h2>
+            <p class="text-muted-blue font-light uppercase text-[8px] lg:text-[10px] tracking-widest">Centros estratégicos de monitoramento bioquímico.</p>
         </div>
-        <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 lg:gap-4 max-w-7xl mx-auto text-center font-exo">
-            <div class="glass-card !p-4 lg:!p-8" data-aos="fade-up"><span class="text-[9px] lg:text-[10px] font-bold text-laser uppercase italic">Vitória</span></div>
-            <div class="glass-card !p-4 lg:!p-8" data-aos="fade-up" data-aos-delay="100"><span class="text-[9px] lg:text-[10px] font-bold text-laser uppercase italic">Rio de Janeiro</span></div>
-            <div class="glass-card !p-4 lg:!p-8" data-aos="fade-up" data-aos-delay="200"><span class="text-[9px] lg:text-[10px] font-bold text-laser uppercase italic">São Paulo</span></div>
-            <div class="glass-card !p-4 lg:!p-8" data-aos="fade-up" data-aos-delay="300"><span class="text-[9px] lg:text-[10px] font-bold text-laser uppercase italic">Brasília</span></div>
-            <div class="glass-card !p-4 lg:!p-8 col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="400"><span class="text-[9px] lg:text-[10px] font-bold text-laser uppercase italic">Minas Gerais</span></div>
+        <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 lg:gap-4 max-w-7xl mx-auto text-center font-figtree">
+            <div class="glass-card !p-4 lg:!p-8" data-aos="fade-up"><span class="text-[9px] lg:text-[10px] font-bold text-brand-blue uppercase italic">Vitória</span></div>
+            <div class="glass-card !p-4 lg:!p-8" data-aos="fade-up" data-aos-delay="100"><span class="text-[9px] lg:text-[10px] font-bold text-brand-blue uppercase italic">Rio de Janeiro</span></div>
+            <div class="glass-card !p-4 lg:!p-8" data-aos="fade-up" data-aos-delay="200"><span class="text-[9px] lg:text-[10px] font-bold text-brand-blue uppercase italic">São Paulo</span></div>
+            <div class="glass-card !p-4 lg:!p-8" data-aos="fade-up" data-aos-delay="300"><span class="text-[9px] lg:text-[10px] font-bold text-brand-blue uppercase italic">Brasília</span></div>
+            <div class="glass-card !p-4 lg:!p-8 col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="400"><span class="text-[9px] lg:text-[10px] font-bold text-brand-blue uppercase italic">Minas Gerais</span></div>
         </div>
     </section>
 
-    <section id="contato" class="section-padding bg-[#090b11]">
+    <section id="contato" class="section-padding bg-darker">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-32">
             <div class="text-center lg:text-left">
-                <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-6 lg:mb-12 uppercase leading-tight italic">Mude seu <br><span class="text-laser italic">Destino Biológico</span></h2>
-                <p class="text-muted-gray font-light leading-relaxed mb-8 lg:mb-16 text-sm lg:text-lg">Inicie sua jornada com a tecnologia que antes era restrita apenas às delegações olímpicas. Solicite sua análise de prontidão técnica agora.</p>
-                <div class="hidden lg:block space-y-10 opacity-20 uppercase font-bold text-[10px] tracking-[0.5em]">
-                    <div class="flex items-center gap-8"><div class="w-1 h-1 bg-laser"></div><span>Análise Bioquímica Real</span></div>
-                    <div class="flex items-center gap-8"><div class="w-1 h-1 bg-laser"></div><span>Controle de Carga Olímpica</span></div>
+                <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-6 lg:mb-12 uppercase leading-tight italic font-figtree">O Futuro do Esporte <br><span class="text-brand-blue italic">É Individual.</span></h2>
+                <p class="text-muted-blue font-light leading-relaxed mb-8 lg:mb-16 text-sm lg:text-lg">Inicie sua jornada com a tecnologia que antes era restrita apenas às delegações olímpicas.</p>
+                <div class="hidden lg:block space-y-10 text-muted-blue uppercase font-bold text-[10px] tracking-[0.5em] font-figtree">
+                    <div class="flex items-center gap-8"><div class="w-1.5 h-1.5 bg-[var(--brand-blue)] rounded-full"></div><span>Análise Bioquímica Real</span></div>
+                    <div class="flex items-center gap-8"><div class="w-1.5 h-1.5 bg-[var(--brand-orange)] rounded-full"></div><span>Controle de Carga Olímpica</span></div>
                 </div>
             </div>
 
@@ -336,11 +412,15 @@
         </div>
     </section>
 
-    <footer class="py-10 lg:py-20 px-[5%] lg:px-[10%] border-t border-white/5 opacity-20 text-[7px] lg:text-[9px] font-bold tracking-[0.3em] lg:tracking-[0.6em] uppercase flex flex-col lg:flex-row justify-between items-center gap-6 font-exo">
-        <span>BNEX | LABORATÓRIO DE PERFORMANCE</span>
-        <div class="flex gap-8 lg:gap-16">
-            <a href="https://www.instagram.com/reels/DT6nGmEj6Lg/">Instagram</a>
-            <a href="#">LinkedIn</a>
+    <footer class="py-10 lg:py-20 px-[5%] lg:px-[10%] border-t border-white/10 text-[7px] lg:text-[9px] font-bold tracking-[0.2em] lg:tracking-[0.5em] uppercase flex flex-col lg:flex-row justify-between items-center gap-6 font-figtree">
+        <span class="text-center lg:text-left text-muted-blue">BNEX | BIOMARKER INNOVATION</span>
+        <div class="flex gap-8 lg:gap-16 text-text-light">
+            <a href="https://www.instagram.com/reels/DT6nGmEj6Lg/" class="hover:text-brand-blue transition-colors">Instagram</a>
+            <a href="#" class="hover:text-brand-blue transition-colors">LinkedIn</a>
+        </div>
+        <div class="text-center lg:text-right mt-4 lg:mt-0 text-muted-blue">
+            <span class="opacity-50 block mb-1">Make it Happen</span>
+            Desenvolvido por <a href="https://instagram.com/viofilme" target="_blank" class="text-brand-blue hover:text-white transition-all">Vio Filme</a>
         </div>
     </footer>
 
