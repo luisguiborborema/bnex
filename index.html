@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BNEX | Biomarker Innovation</title>
     <link rel="icon" type="image/png" href="imagens/favicon.svg">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,486 +12,573 @@
     <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta Completa BNEX */
-            --brand-blue: #0372ff; /* Pulso de Dados */
-            --bg-dark: #0a0f2c; /* Fundo principal escuro */
-            --bg-card: #16215b; /* Azul Venoso */
-            --bg-darker: #0c1236; /* Tom de profundidade */
-            --text-light: #e0eaf8; /* Plasma Claro */
-            --text-muted: #a3a9f5; /* Cinza Neural / Azul Claro */
-            --brand-orange: #f26522; /* Alarme Metabólico (Gota Central) */
-            --brand-green: #125929; /* Validação / Sucesso */
+            --brand-blue: #0372ff; 
+            --bg-dark: #0a0f2c; 
+            --bg-card: #16215b; 
+            --bg-darker: #0c1236; 
+            --text-light: #e0eaf8; 
+            --text-muted: #a3a9f5; 
+            --brand-orange: #f26522; 
         }
         
-        html, body { 
-            max-width: 100vw;
-            overflow-x: hidden;
-            font-family: 'Ubuntu', sans-serif;
-            background-color: var(--bg-dark); 
-            color: var(--text-light);
-            scroll-behavior: smooth;
-        }
-        
+        html, body { max-width: 100vw; overflow-x: hidden; font-family: 'Ubuntu', sans-serif; background-color: var(--bg-dark); color: var(--text-light); scroll-behavior: smooth; }
         h1, h2, h3, h4, .font-figtree { font-family: 'Figtree', sans-serif; }
         
-        .text-brand { color: var(--brand-blue); }
-        .text-orange { color: var(--brand-orange); }
-        .bg-brand { background-color: var(--brand-blue); }
-        .bg-orange { background-color: var(--brand-orange); }
-        
-        .section-padding { padding: 60px 5%; }
+        .section-padding { padding: 80px 5%; }
         @media (min-width: 1024px) { .section-padding { padding: 120px 10%; } }
         
-        /* Cards atualizados */
-        .glass-card { 
-            background: rgba(22, 33, 91, 0.4); 
-            border: 1px solid rgba(163, 169, 245, 0.1); 
-            padding: 30px; 
-            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); 
-        }
-        @media (min-width: 1024px) { .glass-card { padding: 40px; } }
+        .glass-card { background: rgba(22, 33, 91, 0.4); border: 1px solid rgba(163, 169, 245, 0.1); padding: 30px; transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); position: relative; }
+        .glass-card:hover { border-color: var(--brand-blue); background: rgba(3, 114, 255, 0.08); transform: translateY(-5px); }
+        .glass-card-alert:hover { border-color: var(--brand-orange); background: rgba(242, 101, 34, 0.05); }
         
-        .glass-card:hover { 
-            border-color: var(--brand-blue); 
-            background: rgba(3, 114, 255, 0.08);
-            transform: translateY(-5px);
-        }
-        
-        .glass-card-alert:hover {
-            border-color: var(--brand-orange); 
-            background: rgba(242, 101, 34, 0.05);
-        }
-
-        .btn-luxury {
-            border: 1px solid rgba(224, 234, 248, 0.15);
-            padding: 1rem 1.5rem;
-            letter-spacing: 0.3em;
-            font-size: 0.6rem;
-            font-weight: 800;
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-            display: inline-block;
-            position: relative;
-            z-index: 1;
-            cursor: pointer;
-            text-align: center;
-            font-family: 'Figtree', sans-serif;
-            text-transform: uppercase;
-        }
-        @media (min-width: 768px) {
-            .btn-luxury { padding: 1.2rem 2.5rem; letter-spacing: 0.5em; font-size: 0.65rem; }
-        }
-
-        .btn-luxury::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 0; height: 100%;
-            background: var(--brand-blue);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: -1;
-        }
+        .btn-luxury { border: 1px solid rgba(224, 234, 248, 0.15); padding: 1rem 1.5rem; letter-spacing: 0.3em; font-size: 0.6rem; font-weight: 800; transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); display: inline-block; position: relative; z-index: 1; cursor: pointer; text-align: center; font-family: 'Figtree', sans-serif; text-transform: uppercase; }
+        @media (min-width: 768px) { .btn-luxury { padding: 1.2rem 2.5rem; letter-spacing: 0.5em; font-size: 0.65rem; } }
+        .btn-luxury::before { content: ""; position: absolute; top: 0; left: 0; width: 0; height: 100%; background: var(--brand-blue); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); z-index: -1; }
         .btn-luxury:hover::before { width: 100%; }
         .btn-luxury:hover { color: #ffffff; border-color: var(--brand-blue); }
-        
         .btn-filled { background-color: var(--brand-blue); color: #ffffff; border-color: var(--brand-blue); }
 
-        .input-bnex {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba(163, 169, 245, 0.2);
-            padding: 18px 0;
-            width: 100%;
-            color: var(--text-light);
-            outline: none;
-            transition: all 0.8s ease;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            font-family: 'Ubuntu', sans-serif;
-        }
+        .line-accent { height: 2px; background: linear-gradient(90deg, var(--brand-orange), var(--brand-blue), transparent); width: 140px; transition: width 2.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        
+        .step-pill { background: rgba(3, 114, 255, 0.1); border: 1px solid var(--brand-blue); color: var(--brand-blue); padding: 4px 12px; border-radius: 100px; font-size: 10px; font-weight: 900; letter-spacing: 0.1em; display: inline-block; margin-bottom: 1rem; }
+        
+        .input-bnex { background: transparent; border: none; border-bottom: 1px solid rgba(163, 169, 245, 0.2); padding: 18px 0; width: 100%; color: var(--text-light); outline: none; transition: all 0.8s ease; font-size: 0.75rem; letter-spacing: 0.1em; font-family: 'Ubuntu', sans-serif; }
         .input-bnex:focus { border-bottom-color: var(--brand-blue); padding-left: 10px; }
         .input-bnex::placeholder { color: var(--text-muted); opacity: 0.7; }
         select.input-bnex option { background: var(--bg-dark); color: var(--text-light); }
 
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 177.77%;
-            height: 0;
-            overflow: hidden;
-            width: 100%;
-            max-width: 360px;
-            margin: 0 auto;
-            border: 1px solid rgba(3, 114, 255, 0.2);
-        }
-        .video-wrapper video, .video-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
-        }
+        .guide-media { width: 100%; height: 200px; background: var(--bg-darker); overflow: hidden; margin-bottom: 24px; border: 1px solid rgba(163, 169, 245, 0.1); }
+        .guide-media img, .guide-media video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: transform 1.5s ease, opacity 0.5s ease; }
+        .glass-card:hover .guide-media img, .glass-card:hover .guide-media video { transform: scale(1.05); opacity: 1; }
 
-        .line-accent {
-            height: 2px;
-            background: linear-gradient(90deg, var(--brand-orange), var(--brand-blue), transparent);
-            width: 80px;
-            transition: width 2.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        @media (min-width: 1024px) { .aos-animate .line-accent { width: 140px; } }
+        .img-grid-container { display: grid; gap: 1rem; grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+        @media (min-width: 1024px) { .img-grid-container { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; } }
         
-        .guide-media {
-            width: 100%;
-            height: 200px;
-            background: var(--bg-darker);
-            overflow: hidden;
-            margin-bottom: 24px;
-            border: 1px solid rgba(163, 169, 245, 0.1);
-        }
-        .guide-media img, .guide-media video {
-            width: 100%; height: 100%; object-fit: cover; opacity: 0.8;
-            transition: transform 1.5s ease, opacity 0.5s ease;
-        }
-        .glass-card:hover .guide-media img, .glass-card:hover .guide-media video { 
-            transform: scale(1.05); 
-            opacity: 1;
-        }
-
-        /* Grelha Bento para as Fotos da Coleta */
-        .img-grid-container {
-            display: grid;
-            gap: 1rem;
-            grid-template-columns: repeat(2, 1fr);
-            auto-rows: 150px;
-        }
-        @media (min-width: 1024px) {
-            .img-grid-container {
-                grid-template-columns: repeat(4, 1fr);
-                auto-rows: 220px;
-            }
-        }
-
-        .text-brand-blue { color: var(--brand-blue); }
-        .text-muted-blue { color: var(--text-muted); }
-        .bg-darker { background-color: var(--bg-darker); }
+        .timeline-scroll { max-height: 800px; overflow-y: auto; padding-right: 15px; scrollbar-width: thin; scrollbar-color: var(--brand-blue) var(--bg-darker); }
+        .timeline-scroll::-webkit-scrollbar { width: 4px; }
+        .timeline-scroll::-webkit-scrollbar-track { background: var(--bg-darker); border-radius: 10px; }
+        .timeline-scroll::-webkit-scrollbar-thumb { background-color: var(--brand-blue); border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="bg-[#0a0f2c] text-[#e0eaf8]">
 
-    <nav class="fixed top-0 left-0 w-full z-50 py-3 lg:py-5 px-4 lg:px-10 flex justify-between items-center bg-[#0a0f2c]/90 backdrop-blur-md border-b border-[rgba(163,169,245,0.1)]">
+    <nav class="fixed top-0 left-0 w-full z-50 py-4 lg:py-6 px-4 lg:px-10 flex justify-between items-center bg-[#0a0f2c]/90 backdrop-blur-md border-b border-[#a3a9f5]/10">
         <div class="flex items-center gap-3">
-            <img src="imagens/logo.png" alt="BNEX Logo" class="h-6 lg:h-8 object-contain">
-            <span class="font-figtree font-black text-lg lg:text-xl tracking-tighter mt-1"></span>
+            <img src="imagens/logo.png" alt="BNEX Logo" class="h-6 lg:h-10 object-contain">
         </div>
-        <div class="hidden lg:flex gap-8 text-[10px] font-bold tracking-[0.4em] text-[var(--text-muted)] uppercase font-figtree">
-            <a href="#sobre" class="hover:text-brand-blue transition-all">Autoridade</a>
-            <a href="#preparacao" class="hover:text-brand-blue transition-all">O Método</a>
-            <a href="#coleta" class="hover:text-brand-blue transition-all">A Coleta</a>
-            <a href="#tecnologia" class="hover:text-brand-blue transition-all">Tecnologia</a>
-            <a href="#depoimentos" class="hover:text-brand-blue transition-all">Performance</a>
-            <a href="#hubs" class="hover:text-brand-blue transition-all">Hubs</a>
+        <div class="hidden lg:flex gap-6 text-[10px] font-bold tracking-[0.4em] text-[#a3a9f5] uppercase font-figtree">
+            <a href="#metodo" class="hover:text-[#0372ff] transition-all">Método</a>
+            <a href="#tecnologia" class="hover:text-[#0372ff] transition-all">Tecnologia</a>
+            <a href="app.html" class="hover:text-[#0372ff] transition-all">App do Atleta</a>
+            <a href="#ciencia" class="hover:text-[#0372ff] transition-all">Ciência</a>
+            <a href="#autoridade" class="hover:text-[#0372ff] transition-all">Autoridade</a>
+            <a href="#depoimentos" class="hover:text-[#0372ff] transition-all">Performance</a>
         </div>
         <a href="#contato" class="btn-luxury btn-filled !py-2 lg:!py-3 !px-4 lg:!px-8 !text-[8px] lg:!text-[9px]">SOLICITAR ACESSO</a>
     </nav>
 
     <section class="min-h-screen flex items-center px-[5%] lg:px-[10%] pt-24 lg:pt-20 relative overflow-hidden">
-        
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full z-10 relative">
             <div data-aos="fade-right">
                 <div class="line-accent mb-8 lg:mb-12"></div>
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold italic leading-tight lg:leading-[1.1] mb-6 lg:mb-10 uppercase break-words font-figtree">
-                    A VERDADE <br> <span class="text-brand-blue italic">BIOQUÍMICA.</span>
+                <h2 class="text-[#0372ff] text-xs lg:text-sm font-bold tracking-[0.4em] uppercase mb-4">Fisiologia do Exercício e Bioquímica</h2>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black italic leading-[1] mb-8 uppercase font-figtree">
+                    A CIÊNCIA POR TRÁS DA <br> <span class="text-[#e0eaf8] italic">EXCELÊNCIA ESPORTIVA</span>
                 </h1>
-                <p class="text-muted-blue text-sm sm:text-base lg:text-xl max-w-xl mb-8 lg:mb-12 font-light leading-relaxed">
-                    Wearables entregam estimativas. A BNEX entrega <strong class="text-white">certeza</strong>. Através de IA e tecnologia Point of Care, decodificamos a essência da sua performance em 20 minutos.
+                <p class="text-[#a3a9f5] text-base lg:text-xl max-w-xl mb-10 font-light leading-relaxed">
+                    Wearables fornecem estimativas, mas a BNEX entrega certeza. Utilizando IA e tecnologia Point of Care, decodificamos a essência da sua performance em apenas 20 minutos.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 lg:gap-6">
-                    <a href="#contato" class="btn-luxury btn-filled w-full sm:w-auto">AGENDAR COLETA</a>
-                    <a href="#dores" class="btn-luxury w-full sm:w-auto">O DIFERENCIAL</a>
+                    <a href="#contato" class="btn-luxury btn-filled w-full sm:w-auto">INICIAR MONITORAMENTO</a>
+                    <a href="#metodo" class="btn-luxury w-full sm:w-auto">CONHECER O MÉTODO</a>
                 </div>
             </div>
             
-            <div class="relative glass-card !p-1 lg:!p-2 order-first lg:order-last" data-aos="fade-left">
+            <div class="relative glass-card !p-1 lg:!p-2 order-first lg:order-last h-fit" data-aos="fade-left">
                 <video autoplay muted loop playsinline class="w-full aspect-video object-cover rounded-sm">
                     <source src="videos/hero_impacto.mp4" type="video/mp4">
                 </video>
-                <div class="absolute -top-2 -left-2 lg:-top-4 lg:-left-4 bg-orange text-white px-3 py-1 lg:px-4 lg:py-2 font-figtree font-bold text-[8px] lg:text-[10px] tracking-widest uppercase shadow-lg">
-                    Tecnologia de Ruptura
+                <div class="absolute -top-4 -right-4 bg-[#f26522] text-white px-6 py-3 font-figtree font-black text-[10px] tracking-[0.3em] uppercase shadow-2xl">
+                    Tecnologia Inédita no Brasil
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="sobre" class="section-padding bg-darker">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-32 items-center">
-            <div data-aos="fade-right">
-                <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-6 lg:mb-10 tracking-tighter uppercase leading-tight italic font-figtree">Ciência que vira <br><span class="text-brand-blue italic">Notícia</span></h2>
-                <p class="text-muted-blue font-light leading-relaxed mb-8 lg:mb-12 text-sm lg:text-lg">
-                    Destaque na mídia nacional, a metodologia BNEX atua na intersecção exata entre a inovação clínica e a inteligência laboratorial. Validada por 20 anos de trajetória olímpica.
-                </p>
-                
-                <div class="flex flex-col gap-8 lg:gap-10">
-                    <div class="flex gap-8 lg:gap-16 border-t border-[rgba(163,169,245,0.2)] pt-8 lg:pt-12">
-                        <div><span class="block text-4xl lg:text-5xl font-bold font-figtree italic text-brand-blue">03</span><span class="text-[8px] lg:text-[10px] tracking-[0.4em] text-muted-blue uppercase font-bold">Olimpíadas</span></div>
-                        <div><span class="block text-4xl lg:text-5xl font-bold font-figtree italic text-brand-blue">+20</span><span class="text-[8px] lg:text-[10px] tracking-[0.4em] text-muted-blue uppercase font-bold">Anos P&D</span></div>
-                    </div>
-                    <a href="https://www.instagram.com/reels/DT6nGmEj6Lg/" target="_blank" class="group inline-flex items-center gap-4 lg:gap-6">
-                        <div class="w-10 h-10 lg:w-14 h-14 rounded-full border border-[var(--brand-orange)] flex items-center justify-center bg-white/5 group-hover:bg-[var(--brand-orange)] transition-all duration-700">
-                            <span class="text-orange group-hover:text-white text-lg lg:text-xl ml-1">▶</span>
-                        </div>
-                        <span class="text-[8px] lg:text-[10px] font-bold tracking-[0.4em] uppercase text-orange underline underline-offset-4 lg:underline-offset-8">Assistir Reportagem</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="glass-card !p-4 lg:!p-8 text-center" data-aos="fade-left">
-                <div class="video-wrapper rounded-sm shadow-2xl border border-[var(--brand-blue)]">
-                    <video autoplay muted loop playsinline class="opacity-100">
-                        <source src="videos/reportagem.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <p class="mt-4 lg:mt-8 text-[8px] lg:text-[10px] tracking-[0.5em] text-muted-blue uppercase font-bold italic font-figtree">BNEX no Jornal Nacional</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="dores" class="section-padding">
+    <section id="dores" class="section-padding bg-[#0c1236]">
         <div class="max-w-7xl mx-auto text-center lg:text-left">
-            <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-12 lg:mb-20 uppercase tracking-tighter font-figtree">Por que sua performance <br><span class="text-orange italic">está quebrando?</span></h2>
+            <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-12 lg:mb-20 uppercase tracking-tighter font-figtree text-[#e0eaf8]">
+                POR QUE SUA PERFORMANCE <br><span class="text-[#f26522] italic">ESTÁ QUEBRANDO?</span>
+            </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 <div class="glass-card glass-card-alert flex flex-col gap-4 lg:gap-6" data-aos="fade-up">
-                    <div class="guide-media"><img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=800" alt="Fadiga"></div>
-                    <h4 class="font-bold text-orange text-xs lg:text-sm tracking-widest uppercase italic font-figtree">Quebrando na prova?</h4>
-                    <p class="text-[10px] lg:text-xs text-muted-blue font-light leading-relaxed">Sair da prova sem energia não é falta de treino, é o seu corpo protegendo seus órgãos por falta de monitoramento metabólico.</p>
+                    <div class="guide-media"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Fadiga Extrema na Prova"></div>
+                    <h4 class="font-bold text-[#f26522] text-xs lg:text-sm tracking-widest uppercase italic font-figtree">Quebrando na prova?</h4>
+                    <p class="text-[10px] lg:text-xs text-[#a3a9f5] font-light leading-relaxed">Sair da prova sem energia não é falta de treino, é o seu corpo protegendo seus órgãos por falta de monitoramento metabólico.</p>
                 </div>
                 <div class="glass-card glass-card-alert flex flex-col gap-4 lg:gap-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="guide-media"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800" alt="Lesão"></div>
-                    <h4 class="font-bold text-orange text-xs lg:text-sm tracking-widest uppercase italic font-figtree">O fantasma da lesão?</h4>
-                    <p class="text-[10px] lg:text-xs text-muted-blue font-light leading-relaxed">Lesões "inexplicáveis" são o grito de um sistema inflamado. Nossa IA detecta o risco antes do primeiro sintoma.</p>
+                    <div class="guide-media"><img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=800&q=80" alt="Dor e Lesão Muscular"></div>
+                    <h4 class="font-bold text-[#f26522] text-xs lg:text-sm tracking-widest uppercase italic font-figtree">O fantasma da lesão?</h4>
+                    <p class="text-[10px] lg:text-xs text-[#a3a9f5] font-light leading-relaxed">Lesões "inexplicáveis" são o grito de um sistema inflamado. Nossa IA detecta o risco antes do primeiro sintoma.</p>
                 </div>
                 <div class="glass-card glass-card-alert flex flex-col gap-4 lg:gap-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="guide-media"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800" alt="Estagnação"></div>
-                    <h4 class="font-bold text-orange text-xs lg:text-sm tracking-widest uppercase italic font-figtree">Esforço sem evolução?</h4>
-                    <p class="text-[10px] lg:text-xs text-muted-blue font-light leading-relaxed">Treinar mais não é treinar melhor. Sem dados reais, seu planejamento é apenas um palpite. Saia do platô com precisão.</p>
+                    <div class="guide-media"><img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80" alt="Estagnação e Frustração"></div>
+                    <h4 class="font-bold text-[#f26522] text-xs lg:text-sm tracking-widest uppercase italic font-figtree">Esforço sem evolução?</h4>
+                    <p class="text-[10px] lg:text-xs text-[#a3a9f5] font-light leading-relaxed">Treinar mais não é treinar melhor. Sem dados reais, seu planejamento é apenas um palpite. Saia do platô com precisão.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="preparacao" class="section-padding bg-darker">
+    <section id="condutas" class="section-padding bg-[#0a0f2c]">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl lg:text-4xl font-extrabold italic mb-12 lg:mb-16 uppercase tracking-tighter font-figtree" data-aos="fade-right">Protocolo de <span class="text-brand-blue italic">Alta Performance</span></h2>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-                <div class="glass-card flex flex-col gap-4" data-aos="fade-up">
-                    <div class="guide-media">
-                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=800" alt="Diretrizes de Dieta">
-                    </div>
-                    <h3 class="text-brand-blue font-bold mb-2 text-xs uppercase tracking-widest italic font-figtree">Base de Prontidão</h3>
-                    <p class="text-[10px] lg:text-xs text-muted-blue leading-relaxed font-light">Mantenha hidratação constante (mínimo 2.5L/dia). Seguir a dieta habitual. Precisamos da sua biologia pura.</p>
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-24">
+                <div data-aos="fade-up">
+                    <h2 class="text-3xl lg:text-5xl font-black italic mb-8 uppercase font-figtree leading-tight">
+                        MAIS DO QUE LAUDOS, <br><span class="text-[#0372ff] italic">OFERECEMOS CONDUTAS.</span>
+                    </h2>
+                    <p class="text-[#a3a9f5] text-lg mb-8 leading-relaxed">
+                        Diferente de exames comuns, a BNEX entrega um guia completo. Indicamos ações específicas em cada área do seu treinamento para garantir que você alcance seu máximo potencial.
+                    </p>
                 </div>
-                <div class="glass-card glass-card-alert flex flex-col gap-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="guide-media">
-                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800" alt="Fatores Críticos">
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div class="glass-card !p-6" data-aos="zoom-in">
+                        <h4 class="font-bold text-[#0372ff] uppercase text-xs mb-3 font-figtree">Treinamento Físico</h4>
+                        <p class="text-[11px] text-[#a3a9f5]">Ajustes personalizados para maximizar seu desempenho a cada sessão.</p>
                     </div>
-                    <h3 class="text-orange font-bold mb-2 text-xs uppercase tracking-widest italic font-figtree">Fatores Críticos</h3>
-                    <ul class="text-[10px] text-muted-blue space-y-2 uppercase tracking-widest leading-relaxed">
-                        <li>• Zero Álcool nas 48h anteriores</li>
-                        <li>• Dormir de 7h a 9h</li>
-                        <li>• Zero novos suplementos</li>
+                    <div class="glass-card !p-6" data-aos="zoom-in" data-aos-delay="100">
+                        <h4 class="font-bold text-[#0372ff] uppercase text-xs mb-3 font-figtree">Fisioterapia</h4>
+                        <p class="text-[11px] text-[#a3a9f5]">Recomendações fundamentadas para recuperação acelerada e prevenção de lesões.</p>
+                    </div>
+                    <div class="glass-card !p-6" data-aos="zoom-in" data-aos-delay="200">
+                        <h4 class="font-bold text-[#0372ff] uppercase text-xs mb-3 font-figtree">Nutrição</h4>
+                        <p class="text-[11px] text-[#a3a9f5]">Indicações para ajustes dos planos alimentares às suas necessidades energéticas reais.</p>
+                    </div>
+                    <div class="glass-card !p-6" data-aos="zoom-in" data-aos-delay="300">
+                        <h4 class="font-bold text-[#0372ff] uppercase text-xs mb-3 font-figtree">Periodização</h4>
+                        <p class="text-[11px] text-[#a3a9f5]">Planejamentos ajustados para garantir picos de desempenho em competições.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodo" class="section-padding bg-[#0c1236]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20" data-aos="fade-down">
+                <h2 class="text-3xl lg:text-5xl font-black italic mb-4 uppercase tracking-tighter font-figtree">MÉTODO <span class="text-[#0372ff] italic">BNEX</span></h2>
+                <p class="text-[#a3a9f5] font-light uppercase text-xs tracking-[0.3em]">Entenda como transformamos sua biologia em resultados.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card relative" data-aos="fade-up">
+                    <span class="step-pill">PASSO 01</span>
+                    <h3 class="text-[#e0eaf8] font-bold uppercase mb-4 text-sm font-figtree">Cadastro & Objetivos</h3>
+                    <p class="text-[11px] text-[#a3a9f5] leading-relaxed">Inicie o processo preenchendo o formulário com seus objetivos (hipertrofia, rendimento, etc.) e particularidades de saúde.</p>
+                </div>
+                <div class="glass-card relative" data-aos="fade-up" data-aos-delay="100">
+                    <span class="step-pill">PASSO 02</span>
+                    <h3 class="text-[#e0eaf8] font-bold uppercase mb-4 text-sm font-figtree">Análise Inteligente</h3>
+                    <p class="text-[11px] text-[#a3a9f5] leading-relaxed">Nossa IA analisa seu perfil automaticamente para determinar o protocolo de tratamento específico que você necessita.</p>
+                </div>
+                <div class="glass-card relative border-[#0372ff]/40" data-aos="fade-up" data-aos-delay="200">
+                    <span class="step-pill bg-[#0372ff] text-white">PASSO 03</span>
+                    <h3 class="text-[#0372ff] font-bold uppercase mb-4 text-sm font-figtree">Coleta no Hub</h3>
+                    <p class="text-[11px] text-[#a3a9f5] leading-relaxed">Dirija-se ao Hub selecionado. A coleta é rápida (menos de 1 min) utilizando o método indolor de gota capilar.</p>
+                </div>
+                <div class="glass-card relative" data-aos="fade-up" data-aos-delay="300">
+                    <span class="step-pill">PASSO 04</span>
+                    <h3 class="text-[#f26522] font-bold uppercase mb-4 text-sm font-figtree">Resultados & Conduta</h3>
+                    <p class="text-[11px] text-[#a3a9f5] leading-relaxed">Em 20 minutos, receba resultados personalizados e recomendações precisas direto no seu celular e para sua equipe técnica.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="coleta" class="section-padding bg-[#0a0f2c]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-[#f26522] font-bold text-xs lg:text-sm tracking-[0.4em] uppercase mb-4">Inovação em Saúde</h2>
+                    <h3 class="text-3xl lg:text-5xl font-black italic mb-8 uppercase font-figtree">ESTÁ COM DÚVIDA DO QUE É <br><span class="text-[#0372ff] italic">COLETA POINT OF CARE?</span></h3>
+                    <p class="text-[#a3a9f5] text-lg mb-8 leading-relaxed">
+                        Estamos comunicando algo extremamente novo. Point of Care (Ponto de Cuidado) é a tecnologia que permite realizar análises laboratoriais complexas fora de um hospital, entregando resultados de nível ouro no local onde o atleta treina.
+                    </p>
+                    <ul class="space-y-4 text-xs uppercase tracking-widest font-bold">
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-[#0372ff] rounded-full"></div> Sem agulhas invasivas</li>
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-[#0372ff] rounded-full"></div> Apenas uma gota de sangue</li>
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-[#0372ff] rounded-full"></div> Precisão de laboratório central</li>
                     </ul>
                 </div>
-                <div class="glass-card flex flex-col gap-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="guide-media border border-[var(--brand-blue)]">
-                        <video autoplay muted loop playsinline class="opacity-100">
-                            <source src="videos/biomarcadores.mp4" type="video/mp4">
+                <div class="flex justify-center lg:justify-end" data-aos="fade-left">
+                    <div class="glass-card !p-2 relative overflow-hidden group w-full max-w-[360px] aspect-[9/16]">
+                        <video autoplay muted loop playsinline class="w-full h-full object-cover rounded-sm opacity-90 group-hover:opacity-100 transition-all duration-700">
+                            <source src="videos/video_coleta.mp4" type="video/mp4">
                         </video>
-                    </div>
-                    <h3 class="text-brand-blue font-bold mb-2 text-xs uppercase tracking-widest italic font-figtree">15 Minutos Point Of Care</h3>
-                    <p class="text-[10px] lg:text-xs text-muted-blue leading-relaxed font-light italic">Coleta minimamente invasiva por gota de sangue periférica. Processamento bioquímico local e conduta via IA.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="coleta" class="section-padding">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center lg:text-left mb-12 lg:mb-16" data-aos="fade-right">
-                <h2 class="text-3xl lg:text-4xl font-extrabold italic mb-4 uppercase tracking-tighter font-figtree">A Coleta <span class="text-brand-blue italic">Point of Care</span></h2>
-                <p class="text-muted-blue font-light leading-relaxed text-sm lg:text-base max-w-2xl">
-                    Procedimento minimamente invasivo. Gota de sangue periférica com processamento de laboratório em tempo real no seu Hub de performance.
-                </p>
-            </div>
-
-            <div class="img-grid-container">
-                <div class="col-span-2 row-span-2 glass-card !p-1 lg:!p-2 overflow-hidden relative group" data-aos="fade-up">
-                    <img src="imagens/01.jpg" alt="Processo de Coleta BNEX 1" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-                    <div class="absolute bottom-4 left-4 bg-bg-darker/80 backdrop-blur-sm px-3 py-1 border border-brand-blue/30 text-[8px] lg:text-[10px] text-text-light uppercase tracking-widest font-bold">
-                        Passo 01
-                    </div>
-                </div>
-                <div class="col-span-1 row-span-1 glass-card !p-1 lg:!p-2 overflow-hidden relative group" data-aos="fade-up" data-aos-delay="100">
-                    <img src="imagens/02.jpg" alt="Processo de Coleta BNEX 2" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-                </div>
-                <div class="col-span-1 row-span-1 glass-card !p-1 lg:!p-2 overflow-hidden relative group" data-aos="fade-up" data-aos-delay="200">
-                    <img src="imagens/03.jpg" alt="Processo de Coleta BNEX 3" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-                </div>
-                <div class="col-span-1 row-span-1 glass-card !p-1 lg:!p-2 overflow-hidden relative group" data-aos="fade-up" data-aos-delay="300">
-                    <img src="imagens/04.jpg" alt="Processo de Coleta BNEX 4" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-                </div>
-                <div class="col-span-1 row-span-1 glass-card !p-1 lg:!p-2 overflow-hidden relative group" data-aos="fade-up" data-aos-delay="400">
-                    <img src="imagens/05.jpg" alt="Processo de Coleta BNEX 5" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-                    <div class="absolute bottom-2 right-2 lg:bottom-4 lg:right-4 bg-brand-blue text-white px-2 py-1 text-[8px] lg:text-[10px] uppercase tracking-widest font-bold">
-                        15 Minutos
+                        <div class="absolute bottom-6 left-6 bg-[#0c1236]/90 px-4 py-2 border border-[#0372ff]/30 text-[10px] text-[#e0eaf8] uppercase font-bold backdrop-blur-sm">Coleta Simplificada</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="tecnologia" class="section-padding bg-darker">
+    <section id="tecnologia" class="section-padding bg-[#0c1236]">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-            <div data-aos="fade-right" class="text-center lg:text-left">
-                <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-6 lg:mb-8 uppercase tracking-tighter italic font-figtree">A Tecnologia da <br><span class="text-brand-blue italic">Sua Performance</span></h2>
-                <p class="text-muted-blue font-light leading-relaxed mb-6 lg:mb-8 text-sm lg:text-lg">
-                    Esqueça o feeling. Nossa interface proprietária processa seus biomarcadores inflamatórios, metabólicos e hormonais em tempo real, fornecendo informações precisas para monitorar com confiança.
+            <div data-aos="fade-right">
+                <h2 class="text-[#f26522] font-bold text-xs lg:text-sm tracking-[0.4em] uppercase mb-4">Análise em Tempo Real</h2>
+                <h3 class="text-3xl lg:text-5xl font-extrabold italic mb-6 uppercase tracking-tighter font-figtree text-[#e0eaf8]">A TECNOLOGIA DA <br><span class="text-[#0372ff] italic">SUA PERFORMANCE</span></h3>
+                <p class="text-[#a3a9f5] font-light leading-relaxed mb-6 text-sm lg:text-lg">
+                    Processamos seus biomarcadores inflamatórios, metabólicos e hormonais em tempo real com analisadores laboratoriais de última geração.
                 </p>
-                <ul class="space-y-4 text-text-light uppercase font-bold text-[8px] lg:text-[10px] tracking-[0.2em] lg:tracking-[0.4em] text-left inline-block">
-                    <li><span class="text-brand-blue mr-2">■</span> Análise de Resposta Inflamatória</li>
-                    <li><span class="text-orange mr-2">■</span> Controle de Desgaste Muscular</li>
-                    <li><span class="text-muted-blue mr-2">■</span> Ajuste Dinâmico de Carga via IA</li>
+                <ul class="space-y-4 text-[#e0eaf8] uppercase font-bold text-[8px] lg:text-[10px] tracking-[0.4em]">
+                    <li><span class="text-[#0372ff] mr-2">■</span> Imunofluorescência Rápida</li>
+                    <li><span class="text-[#f26522] mr-2">■</span> Bioquímica Seca</li>
+                    <li><span class="text-[#a3a9f5] mr-2">■</span> Precisão Laboratorial</li>
                 </ul>
             </div>
-            <div class="glass-card !p-0 overflow-hidden border border-[var(--brand-blue)]" data-aos="fade-left">
-                <video autoplay muted loop playsinline class="w-full object-cover opacity-100 aspect-video">
-                    <source src="videos/matriz.mp4" type="video/mp4">
-                </video>
+            
+            <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
+                <div class="glass-card !p-2 relative overflow-hidden group aspect-square">
+                    <img src="imagens/equipamento1.png" alt="Analisador Point of Care 1" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 transition-all duration-500">
+                    <div class="absolute bottom-2 left-2 bg-[#0c1236]/90 px-2 py-1 border border-[#0372ff]/30 text-[8px] text-[#e0eaf8] uppercase font-bold">Imunofluorescência</div>
+                </div>
+                <div class="glass-card !p-2 relative overflow-hidden group aspect-square">
+                    <img src="imagens/equipamento2.jpg" alt="Analisador Point of Care 2" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 transition-all duration-500">
+                    <div class="absolute bottom-2 left-2 bg-[#0c1236]/90 px-2 py-1 border border-[#0372ff]/30 text-[8px] text-[#e0eaf8] uppercase font-bold">Bioquímica Seca</div>
+                </div>
+                <div class="col-span-2 glass-card !p-2 relative overflow-hidden group aspect-video lg:aspect-[2.5/1]">
+                    <img src="imagens/equipamento3.png" alt="Leitor Portátil" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 transition-all duration-500">
+                    <div class="absolute bottom-2 left-2 bg-[#0c1236]/90 px-2 py-1 border border-[#0372ff]/30 text-[8px] text-[#e0eaf8] uppercase font-bold">Analisadores de Alta Precisão</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="depoimentos" class="section-padding">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12 lg:mb-20" data-aos="fade-up">
-                <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-4 lg:mb-6 uppercase tracking-tighter font-figtree">Performance <span class="text-brand-blue italic">Comprovada</span></h2>
-                <p class="text-muted-blue font-light uppercase text-[8px] lg:text-[10px] tracking-widest">A voz de quem já atingiu a elite com a BNEX.</p>
+    <section id="sistema" class="section-padding bg-[#0a0f2c]">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            <div data-aos="fade-right">
+                <h2 class="text-[#f26522] font-bold text-xs lg:text-sm tracking-[0.4em] uppercase mb-4">Inteligência de Dados</h2>
+                <h3 class="text-3xl lg:text-5xl font-black italic mb-6 uppercase font-figtree text-[#e0eaf8]">O NOSSO <br><span class="text-[#0372ff] italic">SISTEMA.</span></h3>
+                <p class="text-[#a3a9f5] text-base lg:text-lg leading-relaxed mb-6">
+                    Usaremos vários painéis com mais de 40 biomarcadores e ainda usando crossover para acompanhamento (follow-up) e buscando predições com o acúmulo de dados identificados pela nossa IA.
+                </p>
+                <ul class="space-y-4 text-[#e0eaf8] uppercase font-bold text-[8px] lg:text-[10px] tracking-[0.4em]">
+                    <li><span class="text-[#0372ff] mr-2">■</span> Painéis de Controle</li>
+                    <li><span class="text-[#f26522] mr-2">■</span> Predições via IA</li>
+                    <li><span class="text-[#a3a9f5] mr-2">■</span> Monitoramento Crossover</li>
+                </ul>
+                <div class="mt-8">
+                    <a href="app.html" class="text-[#0372ff] font-bold text-xs tracking-widest uppercase hover:text-[#e0eaf8] transition-colors border-b border-[#0372ff] pb-1 inline-block">Ver todos os recursos do App ➔</a>
+                </div>
             </div>
-
-            <div class="flex flex-wrap justify-center gap-8 lg:gap-12">
-                <div class="glass-card !p-4 flex flex-col items-center w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-2rem)] max-w-[360px]" data-aos="fade-up">
-                    <div class="w-full aspect-[9/16] rounded-sm overflow-hidden border border-[var(--brand-blue)]/30 bg-black">
-                        <video controls playsinline class="w-full h-full object-cover">
-                            <source src="videos/alison.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <h4 class="mt-6 font-bold text-text-light text-sm uppercase italic font-figtree tracking-widest">Alison Mamute</h4>
-                    <p class="text-[10px] text-orange uppercase tracking-widest">Campeão Olímpico Volêi de Praia</p>
+            
+            <div class="grid grid-cols-2 gap-4 lg:gap-6" data-aos="fade-left">
+                <div class="col-span-2 glass-card !p-2 relative overflow-hidden group aspect-video">
+                    <video autoplay muted loop playsinline class="w-full h-full object-cover rounded-sm opacity-90 group-hover:opacity-100 transition-all duration-500">
+                        <source src="videos/biomarcadores.mp4" type="video/mp4">
+                    </video>
+                    <div class="absolute bottom-3 left-3 bg-[#0c1236]/90 px-3 py-1 border border-[#0372ff]/30 text-[8px] lg:text-[10px] text-[#e0eaf8] uppercase font-bold backdrop-blur-sm">Dashboard de Performance</div>
+                </div>
+                
+                <div class="col-span-1 glass-card !p-2 relative overflow-hidden group aspect-video">
+                    <img src="imagens/tela1.jpeg" alt="Tela 1" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 transition-all duration-500">
                 </div>
 
-                <div class="glass-card !p-4 flex flex-col items-center w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-2rem)] max-w-[360px]" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-full aspect-[9/16] rounded-sm overflow-hidden border border-[var(--brand-blue)]/30 bg-black">
-                        <video controls playsinline class="w-full h-full object-cover">
-                            <source src="videos/andril.mp4" type="video/mp4">
-                        </video>
+                <div class="col-span-1 glass-card !p-2 relative overflow-hidden group aspect-video">
+                    <img src="imagens/tela2.jpeg" alt="Tela 2" class="w-full h-full object-cover rounded-sm opacity-80 group-hover:opacity-100 transition-all duration-500">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="ciencia" class="section-padding bg-[#0c1236]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-[#f26522] font-bold text-xs lg:text-sm tracking-[0.4em] uppercase mb-4">Prática Baseada em Evidência</h2>
+                    <h3 class="text-3xl lg:text-5xl font-black italic mb-8 uppercase font-figtree">
+                        A CIÊNCIA COMO <br><span class="text-[#0372ff] italic">NOSSO ALICERCE.</span>
+                    </h3>
+                    <p class="text-[#a3a9f5] text-lg mb-8 leading-relaxed">
+                        A metodologia BNEX não é baseada em suposições. Nosso ecossistema de análise e conduta esportiva é inteiramente fundamentado em artigos científicos e publicações de peso, validados pelas maiores instituições de medicina e fisiologia do mundo.
+                    </p>
+                    <ul class="space-y-4 text-xs uppercase tracking-widest font-bold text-[#e0eaf8]">
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-[#0372ff] rounded-full"></div> Respaldo Científico Internacional</li>
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-[#0372ff] rounded-full"></div> Protocolos Clínicos Validados</li>
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-[#0372ff] rounded-full"></div> Décadas de Pesquisa Esportiva</li>
+                    </ul>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4 lg:gap-6" data-aos="fade-left">
+                    <div class="glass-card !p-2 relative group overflow-hidden aspect-[4/3] mt-0 lg:mt-8">
+                        <img src="imagens/artigo1.jpeg" alt="Artigo Científico 1" class="w-full h-full object-cover rounded-sm opacity-50 group-hover:opacity-100 transition-all duration-500 grayscale group-hover:grayscale-0">
+                        <div class="absolute bottom-3 left-3 bg-[#0a0f2c]/90 px-3 py-1 border border-[#0372ff]/30 text-[8px] lg:text-[10px] text-[#e0eaf8] uppercase font-bold backdrop-blur-sm">Estudo Clínico</div>
                     </div>
-                    <h4 class="mt-6 font-bold text-text-light text-sm uppercase italic font-figtree tracking-widest">Andri Govorov</h4>
-                    <p class="text-[10px] text-orange uppercase tracking-widest text-center">Nadador medalhista de bronze</p>
+                    <div class="glass-card !p-2 relative group overflow-hidden aspect-[4/3]">
+                        <img src="imagens/artigo2.jpeg" alt="Artigo Científico 2" class="w-full h-full object-cover rounded-sm opacity-50 group-hover:opacity-100 transition-all duration-500 grayscale group-hover:grayscale-0">
+                        <div class="absolute bottom-3 left-3 bg-[#0a0f2c]/90 px-3 py-1 border border-[#0372ff]/30 text-[8px] lg:text-[10px] text-[#e0eaf8] uppercase font-bold backdrop-blur-sm">Validação POC</div>
+                    </div>
+                    <div class="glass-card !p-2 relative group overflow-hidden aspect-[4/3] mt-0 lg:-mt-8">
+                        <img src="imagens/artigo3.jpeg" alt="Artigo Científico 3" class="w-full h-full object-cover rounded-sm opacity-50 group-hover:opacity-100 transition-all duration-500 grayscale group-hover:grayscale-0">
+                        <div class="absolute bottom-3 left-3 bg-[#0a0f2c]/90 px-3 py-1 border border-[#0372ff]/30 text-[8px] lg:text-[10px] text-[#e0eaf8] uppercase font-bold backdrop-blur-sm">Performance</div>
+                    </div>
+                    <div class="glass-card !p-2 relative group overflow-hidden aspect-[4/3] mt-0 lg:-mt-16">
+                        <img src="imagens/artigo4.jpeg" alt="Artigo Científico 4" class="w-full h-full object-cover rounded-sm opacity-50 group-hover:opacity-100 transition-all duration-500 grayscale group-hover:grayscale-0">
+                        <div class="absolute bottom-3 left-3 bg-[#0a0f2c]/90 px-3 py-1 border border-[#0372ff]/30 text-[8px] lg:text-[10px] text-[#e0eaf8] uppercase font-bold backdrop-blur-sm">Fisiologia</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="autoridade" class="section-padding bg-[#0a0f2c]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
+                <div class="lg:col-span-5" data-aos="fade-right">
+                    <h2 class="text-[#f26522] font-bold text-xs lg:text-sm tracking-[0.4em] uppercase mb-4">Ciência que vira notícia</h2>
+                    <h3 class="text-3xl lg:text-5xl font-black italic mb-6 uppercase font-figtree">
+                        O RESPONSÁVEL <br><span class="text-[#0372ff] italic">TÉCNICO.</span>
+                    </h3>
+                    <p class="text-[#a3a9f5] text-sm lg:text-base mb-8 leading-relaxed">
+                        Destaque na mídia nacional, a metodologia BNEX atua na intersecção exata entre inovação clínica e inteligência laboratorial, validada ao longo de quatro ciclos olímpicos e 20 anos de trajetória de grandes resultados. Agora, essa expertise está acessível a qualquer pessoa que pratique esportes e deseje melhorar seu desempenho.
+                    </p>
+                    
+                    <div class="glass-card !p-6 mb-8 bg-[#0c1236]">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-[#0372ff] shrink-0">
+                                <img src="imagens/helvio.jpg" alt="Prof. Dr. Helvio Affonso" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="text-[#e0eaf8] font-bold uppercase font-figtree text-sm lg:text-lg">Prof. Dr. Helvio Affonso</h4>
+                                <p class="text-[#0372ff] text-[9px] font-bold tracking-widest uppercase mt-1">Fisiologia e Bioquímica BNEX</p>
+                            </div>
+                        </div>
+                        <p class="text-[#a3a9f5] text-xs leading-relaxed mb-4">
+                            Formação: Doutorado e mestrado em Ciências Farmacêuticas, especializado em Bioquímica da Atividade Física, Treinamento Esportivo de Alto Rendimento e Fisiologia do Exercício. Formado em Administração Esportiva pelo COI e COB, além de licenciatura e bacharelado em Educação Física.
+                        </p>
+                        <p class="text-[#a3a9f5] text-xs leading-relaxed italic">
+                            "Essa biografia reflete uma carreira impressionante, marcada por conquistas significativas em diversos esportes, e reafirma nosso compromisso em tornar a ciência do esporte acessível a todos que buscam excelência esportiva."
+                        </p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <a href="https://loja.editoradialetica.com/humanidades/o-modelo-de-periodizacao-bioflexivel-uma-imersao-descritiva-nos-processos-de-treinamentos-das-temporadas-super-vitoriosas-200820122016" target="_blank" class="glass-card !p-4 flex items-center gap-4 hover:bg-[#0372ff]/5 transition-all block w-full text-left">
+                            <div class="w-10 h-10 rounded-full bg-[#0372ff]/20 flex items-center justify-center text-[#0372ff] text-lg font-bold border border-[#0372ff]/30 shrink-0">📖</div>
+                            <div>
+                                <h4 class="font-bold text-[#e0eaf8] uppercase text-[10px] lg:text-xs font-figtree tracking-widest mb-1">Autor Publicado</h4>
+                                <p class="text-[9px] lg:text-[10px] text-[#a3a9f5]">Livro de referência em Periodização Esportiva.</p>
+                            </div>
+                        </a>
+                        <a href="https://podcasts.apple.com/us/podcast/o-cientista-do-esporte-33-os-biomarcadores-no-esporte/id1460165023?i=1000489141920" target="_blank" class="glass-card !p-4 flex items-center gap-4 hover:bg-[#0372ff]/5 transition-all block w-full text-left">
+                            <div class="w-10 h-10 rounded-full bg-[#0372ff]/20 flex items-center justify-center text-[#0372ff] text-lg font-bold border border-[#0372ff]/30 shrink-0">🎙️</div>
+                            <div>
+                                <h4 class="font-bold text-[#e0eaf8] uppercase text-[10px] lg:text-xs font-figtree tracking-widest mb-1">Podcast GE</h4>
+                                <p class="text-[9px] lg:text-[10px] text-[#a3a9f5]">Entrevista Exclusiva: O Cientista do Esporte.</p>
+                            </div>
+                        </a>
+                        <a href="https://open.spotify.com/episode/50v5E8S6PMiRqf5J0gbGYr?si=fc391f9d2f904ccb&nd=1&dlsi=07e8d97c08f84321" target="_blank" class="glass-card !p-4 flex items-center gap-4 hover:bg-[#0372ff]/5 transition-all block w-full text-left">
+                            <div class="w-10 h-10 rounded-full bg-[#0372ff]/20 flex items-center justify-center text-[#0372ff] text-lg font-bold border border-[#0372ff]/30 shrink-0">🎧</div>
+                            <div>
+                                <h4 class="font-bold text-[#e0eaf8] uppercase text-[10px] lg:text-xs font-figtree tracking-widest mb-1">Podcasts Spotify</h4>
+                                <p class="text-[9px] lg:text-[10px] text-[#a3a9f5]">Presença nos principais mesacasts sobre performance.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7" data-aos="fade-left">
+                    <h3 class="text-xl lg:text-2xl font-black italic mb-10 uppercase font-figtree text-[#e0eaf8]">
+                        Resultados de <span class="text-[#f26522]">Grande Expressão</span>
+                    </h3>
+                    
+                    <div class="timeline-scroll">
+                        <div class="relative border-l-2 border-[#0372ff]/30 ml-2 space-y-6 pb-6">
+                            <div class="relative pl-6">
+                                <div class="absolute w-3 h-3 bg-[#f26522] rounded-full -left-[7px] top-2 shadow-[0_0_10px_#f26522]"></div>
+                                <span class="text-[#0372ff] font-black font-figtree text-lg italic block mb-2">2026</span>
+                                <p class="text-[#a3a9f5] text-xs leading-relaxed glass-card !p-4">Medalhista de bronze no Campeonato Mundial de Marcha Atlética, realizado no Brasil, com Caio Bonfim (20km).</p>
+                            </div>
+                            <div class="relative pl-6">
+                                <div class="absolute w-3 h-3 bg-[#0372ff] rounded-full -left-[7px] top-2 border-2 border-[#0c1236]"></div>
+                                <span class="text-[#0372ff] font-black font-figtree text-lg italic block mb-2">2025</span>
+                                <p class="text-[#a3a9f5] text-xs leading-relaxed glass-card !p-4">Campeão mundial em Tóquio com Caio Bonfim (20km marcha atlética) e medalhista de prata nos 35km.</p>
+                            </div>
+                            <div class="relative pl-6">
+                                <div class="absolute w-3 h-3 bg-[#0372ff] rounded-full -left-[7px] top-2 border-2 border-[#0c1236]"></div>
+                                <span class="text-[#0372ff] font-black font-figtree text-lg italic block mb-2">2024</span>
+                                <p class="text-[#a3a9f5] text-xs leading-relaxed glass-card !p-4">Medalhista de prata em Paris com Caio Bonfim (20km) e bicampeão olímpico em vôlei de praia com Duda e Ana Patrícia.</p>
+                            </div>
+                            <div class="relative pl-6">
+                                <div class="absolute w-3 h-3 bg-[#0372ff] rounded-full -left-[7px] top-2 border-2 border-[#0c1236]"></div>
+                                <span class="text-[#0372ff] font-black font-figtree text-lg italic block mb-2">2022</span>
+                                <p class="text-[#a3a9f5] text-xs leading-relaxed glass-card !p-4">Campeão mundial na Itália com as duplas Duda e Ana Patrícia, além de medalhista de ouro com Alison Cerutti e bronze com Mariana Gesteira nas Paralimpíadas.</p>
+                            </div>
+                            <div class="relative pl-6">
+                                <div class="absolute w-3 h-3 bg-[#0372ff] rounded-full -left-[7px] top-2 border-2 border-[#0c1236]"></div>
+                                <span class="text-[#0372ff] font-black font-figtree text-lg italic block mb-2">2021</span>
+                                <p class="text-[#a3a9f5] text-xs leading-relaxed glass-card !p-4">Fisiologista da dupla Alison Cerutti e Álvaro Filho, que alcançou o 5º lugar nas Olimpíadas de Tóquio.</p>
+                            </div>
+                            <div class="relative pl-6">
+                                <div class="absolute w-3 h-3 bg-[#0372ff] rounded-full -left-[7px] top-2 border-2 border-[#0c1236]"></div>
+                                <span class="text-[#0372ff] font-black font-figtree text-lg italic block mb-2">2020</span>
+                                <p class="text-[#a3a9f5] text-xs leading-relaxed glass-card !p-4">Medalhista de prata nas Olimpíadas de Tóquio com Bruno Fratus e semifinalista olímpico com Paulo André Camilo.</p>
+                            </div>
+                            <div class="relative pl-6">
+                                <div class="absolute w-3 h-3 bg-[#0372ff] rounded-full -left-[7px] top-2 border-2 border-[#0c1236]"></div>
+                                <span class="text-[#0372ff] font-black font-figtree text-lg italic block mb-2">2019</span>
+                                <p class="text-[#a3a9f5] text-xs leading-relaxed glass-card !p-4">Trabalho com Paulo André Camilo, campeão mundial em revezamento 4x100m.</p>
+                            </div>
+                            <div class="relative pl-6">
+                                <div class="absolute w-3 h-3 bg-[#0372ff] rounded-full -left-[7px] top-2 border-2 border-[#0c1236]"></div>
+                                <span class="text-[#0372ff] font-black font-figtree text-lg italic block mb-2">2018</span>
+                                <p class="text-[#a3a9f5] text-xs leading-relaxed glass-card !p-4">Fisiologista do nadador ucraniano Andrii Govorov, que quebrou o recorde mundial nos 50m borboleta em Roma.</p>
+                            </div>
+                            <div class="relative pl-6">
+                                <div class="absolute w-3 h-3 bg-[#0372ff] rounded-full -left-[7px] top-2 border-2 border-[#0c1236]"></div>
+                                <span class="text-[#0372ff] font-black font-figtree text-lg italic block mb-2">2016</span>
+                                <p class="text-[#a3a9f5] text-xs leading-relaxed glass-card !p-4">5º lugar nos Jogos Olímpicos do Rio 2016 com Andrii Govorov nos 50m livres; bicampeão olímpico em vôlei de praia com Bruno Schmidt e Alison Cerutti.</p>
+                            </div>
+                            <div class="relative pl-6">
+                                <div class="absolute w-3 h-3 bg-[#0372ff] rounded-full -left-[7px] top-2 border-2 border-[#0c1236]"></div>
+                                <span class="text-[#0372ff] font-black font-figtree text-lg italic block mb-2">2015</span>
+                                <p class="text-[#a3a9f5] text-xs leading-relaxed glass-card !p-4">Conquista do Campeonato Mundial na Holanda com Duda e Ana Patrícia.</p>
+                            </div>
+                            <div class="relative pl-6">
+                                <div class="absolute w-3 h-3 bg-[#0372ff] rounded-full -left-[7px] top-2 border-2 border-[#0c1236]"></div>
+                                <span class="text-[#0372ff] font-black font-figtree text-lg italic block mb-2">2011</span>
+                                <p class="text-[#a3a9f5] text-xs leading-relaxed glass-card !p-4">Medalha Panamericana na natação com Gabriela Rocha nadadora capixaba.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="depoimentos" class="section-padding bg-[#0c1236]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 lg:mb-24" data-aos="fade-up">
+                <h2 class="text-3xl lg:text-5xl font-black italic mb-4 uppercase tracking-tighter font-figtree">PERFORMANCE <span class="text-[#0372ff] italic">COMPROVADA</span></h2>
+                <p class="text-[#a3a9f5] font-light uppercase text-xs tracking-widest">Atletas de elite que já utilizam a metodologia BNEX.</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-8 lg:gap-12">
+                <div class="glass-card !p-4 flex flex-col items-center w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-2rem)] max-w-[360px]" data-aos="fade-up">
+                    <div class="w-full aspect-[9/16] rounded-sm overflow-hidden border border-[#0372ff]/30 bg-black">
+                        <video controls playsinline class="w-full h-full object-cover"><source src="videos/alison.MP4" type="video/mp4"></video>
+                    </div>
+                    <h4 class="mt-6 font-bold text-[#e0eaf8] text-sm uppercase italic font-figtree">Alison Mamute</h4>
+                    <p class="text-[10px] text-[#f26522] uppercase tracking-widest text-center">Campeão Olímpico</p>
+                </div>
+                
+                <div class="glass-card !p-4 flex flex-col items-center w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-2rem)] max-w-[360px]" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-full aspect-[9/16] rounded-sm overflow-hidden border border-[#0372ff]/30 bg-black">
+                        <video controls playsinline class="w-full h-full object-cover"><source src="videos/andril.MP4" type="video/mp4"></video>
+                    </div>
+                    <h4 class="mt-6 font-bold text-[#e0eaf8] text-sm uppercase italic font-figtree">Andri Govorov</h4>
+                    <p class="text-[10px] text-[#f26522] uppercase tracking-widest text-center">Nadador Medalhista</p>
                 </div>
 
                 <div class="glass-card !p-4 flex flex-col items-center w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-2rem)] max-w-[360px]" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-full aspect-[9/16] rounded-sm overflow-hidden border border-[var(--brand-blue)]/30 bg-black">
-                        <video controls playsinline class="w-full h-full object-cover">
-                            <source src="videos/treinador.mp4" type="video/mp4">
-                        </video>
+                    <div class="w-full aspect-[9/16] rounded-sm overflow-hidden border border-[#0372ff]/30 bg-black">
+                        <video controls playsinline class="w-full h-full object-cover"><source src="videos/treinador.MP4" type="video/mp4"></video>
                     </div>
-                    <h4 class="mt-6 font-bold text-text-light text-sm uppercase italic font-figtree tracking-widest">Arilson Silva</h4>
-                    <p class="text-[10px] text-orange uppercase tracking-widest">Técnico Natação</p>
+                    <h4 class="mt-6 font-bold text-[#e0eaf8] text-sm uppercase italic font-figtree">Arilson Silva</h4>
+                    <p class="text-[10px] text-[#f26522] uppercase tracking-widest text-center">Técnico Natação</p>
                 </div>
-
+                
                 <div class="glass-card !p-4 flex flex-col items-center w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-2rem)] max-w-[360px]" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-full aspect-[9/16] rounded-sm overflow-hidden border border-[var(--brand-blue)]/30 bg-black">
-                        <video controls playsinline class="w-full h-full object-cover">
-                            <source src="videos/portugal.mp4" type="video/mp4">
-                        </video>
+                    <div class="w-full aspect-[9/16] rounded-sm overflow-hidden border border-[#0372ff]/30 bg-black">
+                        <video controls playsinline class="w-full h-full object-cover"><source src="videos/portugal.MP4" type="video/mp4"></video>
                     </div>
-                    <h4 class="mt-6 font-bold text-text-light text-sm uppercase italic font-figtree tracking-widest">Ivo Tavares</h4>
-                    <p class="text-[10px] text-orange uppercase tracking-widest text-center">Atleta Salto a Distância - Benfica</p>
+                    <h4 class="mt-6 font-bold text-[#e0eaf8] text-sm uppercase italic font-figtree">Ivo Tavares</h4>
+                    <p class="text-[10px] text-[#f26522] uppercase tracking-widest text-center">Atleta Benfica</p>
                 </div>
 
                 <div class="glass-card !p-4 flex flex-col items-center w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-2rem)] max-w-[360px]" data-aos="fade-up" data-aos-delay="400">
-                    <div class="w-full aspect-[9/16] rounded-sm overflow-hidden border border-[var(--brand-blue)]/30 bg-black">
-                        <video controls playsinline class="w-full h-full object-cover">
-                            <source src="videos/bruno.mp4" type="video/mp4">
-                        </video>
+                    <div class="w-full aspect-[9/16] rounded-sm overflow-hidden border border-[#0372ff]/30 bg-black">
+                        <video controls playsinline class="w-full h-full object-cover"><source src="videos/bruno.MP4" type="video/mp4"></video>
                     </div>
-                    <h4 class="mt-6 font-bold text-text-light text-sm uppercase italic font-figtree tracking-widest">Bruno Fratus</h4>
-                    <p class="text-[10px] text-orange uppercase tracking-widest text-center">Nadador medalhista de bronze</p>
+                    <h4 class="mt-6 font-bold text-[#e0eaf8] text-sm uppercase italic font-figtree">Bruno Fratus</h4>
+                    <p class="text-[10px] text-[#f26522] uppercase tracking-widest text-center">Medalhista Olímpico</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="hubs" class="section-padding bg-darker">
-        <div class="text-center mb-12 lg:mb-20">
-            <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-4 lg:mb-6 uppercase tracking-[0.2em] lg:tracking-[0.4em] italic font-figtree">Pontos de Coleta <span class="text-brand-blue italic">Hubs</span></h2>
-            <p class="text-muted-blue font-light uppercase text-[8px] lg:text-[10px] tracking-widest">Centros estratégicos de monitoramento bioquímico.</p>
-        </div>
-        <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 lg:gap-4 max-w-7xl mx-auto text-center font-figtree">
-            <div class="glass-card !p-4 lg:!p-8" data-aos="fade-up"><span class="text-[9px] lg:text-[10px] font-bold text-brand-blue uppercase italic">Vitória</span></div>
-            <div class="glass-card !p-4 lg:!p-8" data-aos="fade-up" data-aos-delay="100"><span class="text-[9px] lg:text-[10px] font-bold text-brand-blue uppercase italic">Rio de Janeiro</span></div>
-            <div class="glass-card !p-4 lg:!p-8" data-aos="fade-up" data-aos-delay="200"><span class="text-[9px] lg:text-[10px] font-bold text-brand-blue uppercase italic">São Paulo</span></div>
-            <div class="glass-card !p-4 lg:!p-8" data-aos="fade-up" data-aos-delay="300"><span class="text-[9px] lg:text-[10px] font-bold text-brand-blue uppercase italic">Brasília</span></div>
-            <div class="glass-card !p-4 lg:!p-8 col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="400"><span class="text-[9px] lg:text-[10px] font-bold text-brand-blue uppercase italic">Minas Gerais</span></div>
+    <section id="hubs" class="section-padding bg-[#0a0f2c]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl lg:text-5xl font-black italic mb-4 uppercase tracking-[0.3em] font-figtree">PONTOS DE COLETA <span class="text-[#0372ff]">HUBS</span></h2>
+                <p class="text-[#a3a9f5] font-light uppercase text-[10px] tracking-widest">Centros estratégicos de monitoramento bioquímico.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 text-center font-figtree">
+                <div class="glass-card flex items-center justify-center !p-6 lg:!p-8" data-aos="fade-up">
+                    <span class="text-xs font-bold text-[#0372ff] uppercase italic tracking-widest">Vitória</span>
+                </div>
+                <div class="glass-card flex items-center justify-center !p-6 lg:!p-8" data-aos="fade-up" data-aos-delay="100">
+                    <span class="text-xs font-bold text-[#0372ff] uppercase italic tracking-widest">Rio de Janeiro</span>
+                </div>
+                <div class="glass-card flex items-center justify-center !p-6 lg:!p-8" data-aos="fade-up" data-aos-delay="200">
+                    <span class="text-xs font-bold text-[#0372ff] uppercase italic tracking-widest">São Paulo</span>
+                </div>
+                <div class="glass-card flex items-center justify-center !p-6 lg:!p-8" data-aos="fade-up" data-aos-delay="300">
+                    <span class="text-xs font-bold text-[#0372ff] uppercase italic tracking-widest">Brasília</span>
+                </div>
+                <div class="glass-card flex items-center justify-center !p-6 lg:!p-8 col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="400">
+                    <span class="text-xs font-bold text-[#0372ff] uppercase italic tracking-widest">Minas Gerais</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="contato" class="section-padding">
+    <section id="contato" class="section-padding bg-[#0c1236]">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-32">
-            <div class="text-center lg:text-left">
-                <h2 class="text-3xl lg:text-5xl font-extrabold italic mb-6 lg:mb-12 uppercase leading-tight italic font-figtree">O Futuro do Esporte <br><span class="text-brand-blue italic">É Individual.</span></h2>
-                <p class="text-muted-blue font-light leading-relaxed mb-8 lg:mb-16 text-sm lg:text-lg">Inicie sua jornada com a tecnologia que antes era restrita apenas às delegações olímpicas.</p>
-                <div class="hidden lg:block space-y-10 text-muted-blue uppercase font-bold text-[10px] tracking-[0.5em] font-figtree">
-                    <div class="flex items-center gap-8"><div class="w-1.5 h-1.5 bg-[var(--brand-blue)] rounded-full"></div><span>Análise Bioquímica Real</span></div>
-                    <div class="flex items-center gap-8"><div class="w-1.5 h-1.5 bg-[var(--brand-orange)] rounded-full"></div><span>Controle de Carga Olímpica</span></div>
+            <div>
+                <h2 class="text-3xl lg:text-5xl font-black italic mb-6 uppercase italic font-figtree leading-tight">MUDE SEU <br><span class="text-[#0372ff] italic">DESTINO BIOLÓGICO.</span></h2>
+                <p class="text-[#a3a9f5] font-light leading-relaxed text-sm mb-12">Inicie sua jornada com a tecnologia que antes era restrita apenas às delegações olímpicas.</p>
+                
+                <div class="bg-[#0372ff]/10 border-l-4 border-[#0372ff] p-8 mb-12" data-aos="fade-right">
+                    <h4 class="font-bold text-[#e0eaf8] uppercase text-xs mb-4 tracking-widest font-figtree">Solução para Empresas</h4>
+                    <p class="text-xs text-[#a3a9f5] leading-relaxed italic">
+                        Se você representa uma clínica, academia, studio ou clube de futebol e pretende inserir essa tecnologia para seus atletas e clientes, preencha o formulário e nossos agentes entrarão em contato imediatamente.
+                    </p>
                 </div>
             </div>
-
-            <div class="glass-card !p-6 lg:!p-16" data-aos="fade-up">
-                <form action="#" class="flex flex-col gap-6 lg:gap-10">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-10">
-                        <input type="text" placeholder="NOME" class="input-bnex" required>
-                        <input type="text" placeholder="ANIVERSÁRIO" class="input-bnex" required>
+            <div class="glass-card !p-6 lg:!p-16 h-fit" data-aos="fade-up">
+                <form action="#" class="flex flex-col gap-6">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <input type="text" placeholder="NOME OU NOME DA EMPRESA" class="input-bnex" required>
+                        <input type="text" placeholder="ANIVERSÁRIO (SE INDIVIDUAL)" class="input-bnex">
                     </div>
                     <select class="input-bnex" required>
-                        <option value="" disabled selected>HUB DE COLETA</option>
-                        <option value="vitória">Vitória</option>
-                        <option value="rj">Rio de Janeiro</option>
-                        <option value="sp">São Paulo</option>
-                        <option value="bsb">Brasília</option>
-                        <option value="mg">Minas Gerais</option>
-                    </select>
-                    <select class="input-bnex" required>
-                        <option value="" disabled selected>OBJETIVO PRINCIPAL</option>
-                        <option value="emagrecimento">Emagrecimento</option>
+                        <option value="" disabled selected>PERFIL / OBJETIVO</option>
+                        <option value="emagrecimento">Emagrecimento / Saúde</option>
                         <option value="hipertrofia">Hipertrofia</option>
-                        <option value="performance">Performance de Elite</option>
+                        <option value="rendimento">Atleta Rendimento / Base</option>
+                        <option value="empresa">Empresa (Clínica/Clube/Academia)</option>
                     </select>
+                    <textarea placeholder="POSSUI COMORBIDADES OU PARTICULARIDADES QUE EXIGEM TRATAMENTO ESPECIAL?" class="input-bnex h-24 resize-none"></textarea>
                     <input type="tel" placeholder="WHATSAPP" class="input-bnex" required>
-                    <button type="submit" class="btn-luxury btn-filled w-full font-bold italic tracking-widest uppercase">Solicitar Consultoria</button>
+                    <button type="submit" class="btn-luxury btn-filled w-full font-black italic tracking-widest">Solicitar Consultoria Técnica</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer class="py-10 lg:py-20 px-[5%] lg:px-[10%] border-t border-white/10 text-[7px] lg:text-[9px] font-bold tracking-[0.2em] lg:tracking-[0.5em] uppercase flex flex-col lg:flex-row justify-between items-center gap-6 font-figtree">
-        <span class="text-center lg:text-left text-muted-blue">BNEX | BIOMARKER INNOVATION</span>
-        <div class="flex gap-8 lg:gap-16 text-text-light">
-            <a href="https://www.instagram.com/reels/DT6nGmEj6Lg/" class="hover:text-brand-blue transition-colors">Instagram</a>
-            <a href="#" class="hover:text-brand-blue transition-colors">LinkedIn</a>
-        </div>
-        <div class="text-center lg:text-right mt-4 lg:mt-0 text-muted-blue">
+    <footer class="py-10 lg:py-20 px-[5%] border-t border-white/10 text-[7px] lg:text-[9px] font-bold tracking-[0.5em] uppercase flex flex-col lg:flex-row justify-between items-center gap-6 font-figtree">
+        <span class="text-[#a3a9f5]">BNEX | BIOMARKER INNOVATION</span>
+        <div class="text-center lg:text-right text-[#a3a9f5]">
             <span class="opacity-50 block mb-1">Make it Happen</span>
-            Desenvolvido por <a href="https://instagram.com/viofilme" target="_blank" class="text-brand-blue hover:text-white transition-all">Vio Filme</a>
+            Desenvolvido por <a href="https://instagram.com/viofilme" target="_blank" class="text-[#0372ff] hover:text-white transition-all">Vio Filme</a>
         </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1500, once: true, offset: 50, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
-    </script>
+    <script>AOS.init({ duration: 1500, once: true, offset: 50, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });</script>
 </body>
 </html>
